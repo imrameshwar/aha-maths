@@ -159,3 +159,4 @@ Static files, no build:
   as a fallback in `vercel.json`.
 - **Any static host / S3 / nginx** — upload the folder; set the host's custom-error-document
   (S3 bucket property / nginx `error_page 404`) to `/404.html`.
+
