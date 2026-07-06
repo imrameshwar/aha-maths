@@ -1,0 +1,32 @@
+{
+  "id": "5-04-pythagoras",
+  "world": "algebra",
+  "world_order": 5,
+  "lesson_order": 4,
+  "tiers": ["beginner", "explorer", "deep"],
+  "default_tier": "beginner",
+  "visualizer": "pythagoras-theorem",
+  "i18n": {
+    "title":            "lesson.pythagoras.title",
+    "subtitle":         "lesson.pythagoras.subtitle",
+    "hook_title":       "lesson.pythagoras.hook.title",
+    "hook_body":        "lesson.pythagoras.hook.body",
+    "play_title":       "lesson.pythagoras.play.title",
+    "play_instruction": "lesson.pythagoras.play.instruction",
+    "aha_title":        "lesson.pythagoras.aha.title",
+    "aha_body":         "lesson.pythagoras.aha.body",
+    "check_title":      "lesson.pythagoras.check.title",
+    "connect_body":     "lesson.pythagoras.connect.body",
+    "connect_next_label": "lesson.pythagoras.connect.next_label"
+  },
+  "checks": [
+    {
+      "type": "tap-count",
+      "count": 5,
+      "i18n": { "prompt": "lesson.pythagoras.check_q1.prompt" }
+    }
+  ],
+  "watch_url": null,
+  "next": "5-05-graphs",
+  "prev": "5-03-equations"
+}

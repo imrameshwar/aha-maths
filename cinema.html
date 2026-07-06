@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aha Maths — Cinematic (prototype)</title>
+  <meta name="description" content="A prototype of the Aha Maths cinematic layer: the 'accuracy sandwich' — AI mood, code-accurate math, bilingual text.">
+
+  <link rel="canonical" href="https://ahamaths.com/cinema.html">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/cinema.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="index.html"><div class="logo-mark">AM</div> Aha Maths</a>
+    <nav class="site-nav">
+      <a href="numbers-story.html" class="site-nav-story">✨ Story</a>
+      <a href="learn.html?lesson=1-01-counting" class="site-nav-learn">📚 Learn</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container cinema-main" id="main-content">
+
+  <div class="cinema-intro">
+    <p class="cinema-kicker">✦ Cinematic layer · prototype (P7)</p>
+    <h1>The Birth of <span>Zero</span></h1>
+    <p class="cinema-lede">A proof of the <b>“accuracy sandwich.”</b> Three layers are composited:
+       a cinematic <b>mood</b> backdrop (where a Higgsfield clip drops in), the
+       <b>code-accurate</b> math on top (every digit is rendered by code, never by AI),
+       and <b>bilingual text</b>. Toggle each layer to see how it works.</p>
+  </div>
+
+  <div class="cinema-stage">
+    <canvas id="cinema-canvas" aria-label="The Birth of Zero — cinematic scene"></canvas>
+    <div class="cinema-caption" id="cinema-caption"></div>
+    <div class="cinema-mood-badge" id="mood-badge" hidden>① AI mood layer · Higgsfield drop-in</div>
+  </div>
+
+  <div class="cinema-controls">
+    <div class="cc-group">
+      <button class="cc-btn cc-primary" id="btn-play">▶ Play</button>
+      <button class="cc-btn" id="btn-replay">↺ Replay</button>
+    </div>
+    <div class="cc-group cc-lang" role="group" aria-label="Language">
+      <button class="cc-seg is-active" data-lang="en">EN</button>
+      <button class="cc-seg" data-lang="hi">हिं</button>
+    </div>
+    <div class="cc-group cc-layers" role="group" aria-label="Layers">
+      <label class="cc-toggle"><input type="checkbox" data-layer="mood" checked> ① Mood <i>(AI)</i></label>
+      <label class="cc-toggle"><input type="checkbox" data-layer="math" checked> ② Math <i>(code)</i></label>
+      <label class="cc-toggle"><input type="checkbox" data-layer="text" checked> ③ Text <i>(HTML)</i></label>
+    </div>
+  </div>
+
+  <section class="cinema-note">
+    <h2>How this becomes “ultra” in production</h2>
+    <div class="note-grid">
+      <div class="note-card">
+        <span class="note-num">①</span>
+        <b>Mood → Higgsfield</b>
+        <p>The backdrop here is a coded stand-in. In production it’s replaced by a Higgsfield
+           Soul/DoP clip (clay tablets, cosmos) — carrying <em>mood only</em>, never a number or word.</p>
+      </div>
+      <div class="note-card">
+        <span class="note-num">②</span>
+        <b>Math → code</b>
+        <p>The place-value columns and the zero-drop are rendered by code, so “105” is always
+           correct. AI never touches digits, symbols, or geometry.</p>
+      </div>
+      <div class="note-card">
+        <span class="note-num">③</span>
+        <b>Text → HTML</b>
+        <p>Captions are localisable EN/हिं overlays — never baked into pixels (AI mangles
+           Devanagari). Remotion composites ②+③ over ①’s clip and exports the MP4.</p>
+      </div>
+    </div>
+    <p class="note-foot">Weight-gated for production: short loop, poster frame, AV1/H.265,
+       reduced-motion + Save-Data aware. See <code>PREMIUM-DESIGN-PLAN.md · §12</code>.</p>
+  </section>
+
+</main>
+
+<script type="module">
+  import { initCinema } from './story/cinema-scene.js';
+
+  const canvas  = document.getElementById('cinema-canvas');
+  const caption = document.getElementById('cinema-caption');
+  const cinema  = initCinema({ canvas, captionEl: caption });
+  if (['localhost','127.0.0.1'].includes(location.hostname)) window.__cinema = cinema;
+
+  const playBtn = document.getElementById('btn-play');
+  if (cinema.isReduced) playBtn.textContent = '⏸ Reduced motion';
+
+  playBtn.addEventListener('click', () => { cinema.play(); playBtn.textContent = '▶ Playing…'; });
+  document.getElementById('btn-replay').addEventListener('click', () => { cinema.replay(); playBtn.textContent = '▶ Playing…'; });
+
+  document.querySelectorAll('.cc-seg').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.cc-seg').forEach(x => x.classList.toggle('is-active', x === b));
+    cinema.setLang(b.dataset.lang);
+  }));
+
+  const moodBadge = document.getElementById('mood-badge');
+  document.querySelectorAll('[data-layer]').forEach(cb => cb.addEventListener('change', () => {
+    cinema.toggle(cb.dataset.layer, cb.checked);
+    if (cb.dataset.layer === 'mood') moodBadge.hidden = cb.checked;   // show badge when AI layer is off
+  }));
+
+  // localhost: keep SW out of the way
+  if ('serviceWorker' in navigator && ['localhost','127.0.0.1'].includes(location.hostname)) {
+    navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
+    if (window.caches) caches.keys().then(ks => ks.forEach(k => caches.delete(k)));
+  }
+</script>
+
+</body>
+</html>

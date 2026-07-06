@@ -1,0 +1,36 @@
+{
+  "id": "2-01-addition",
+  "world": "arithmetic",
+  "world_order": 2,
+  "lesson_order": 1,
+  "tiers": ["beginner", "explorer", "deep"],
+  "default_tier": "beginner",
+  "visualizer": "addition",
+  "controls": {
+    "a": { "type": "range", "min": 1, "max": 9, "default": 3 },
+    "b": { "type": "range", "min": 1, "max": 9, "default": 4 }
+  },
+  "i18n": {
+    "title":              "lesson.addition.title",
+    "subtitle":           "lesson.addition.subtitle",
+    "hook_title":         "lesson.addition.hook.title",
+    "hook_body":          "lesson.addition.hook.body",
+    "play_title":         "lesson.addition.play.title",
+    "play_instruction":   "lesson.addition.play.instruction",
+    "aha_title":          "lesson.addition.aha.title",
+    "aha_body":           "lesson.addition.aha.body",
+    "check_title":        "lesson.addition.check.title",
+    "connect_body":       "lesson.addition.connect.body",
+    "connect_next_label": "lesson.addition.connect.next_label"
+  },
+  "checks": [
+    {
+      "type": "tap-count",
+      "count": 7,
+      "i18n": { "prompt": "lesson.addition.check_q1.prompt" }
+    }
+  ],
+  "watch_url": null,
+  "next": "2-02-subtraction",
+  "prev": "1-04-negatives"
+}

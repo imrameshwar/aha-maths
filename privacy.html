@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy — Aha Maths</title>
+  <meta name="description" content="What Aha Maths stores, why, and where it stays. Short and honest, on purpose.">
+  <script>
+    (function () {
+      var t = localStorage.getItem('am-theme');
+      if (t) { document.documentElement.setAttribute('data-theme', t); return; }
+      if (!window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/hub.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- ── Header ── -->
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="index.html">
+      <div class="logo-mark">AM</div>
+      Aha Maths
+    </a>
+    <nav class="site-nav" id="site-nav">
+      <a href="numbers-story.html" class="site-nav-story">✨ Story</a>
+      <a href="cinema.html" class="site-nav-cinema">🎬 Cinematic</a>
+      <a href="learn.html?lesson=1-01-counting" class="site-nav-learn">📚 Learn</a>
+    </nav>
+    <div class="header-actions">
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <div class="settings-wrapper">
+        <button class="settings-toggle" id="settings-btn" aria-label="Settings" aria-expanded="false" aria-haspopup="dialog" title="Settings">⚙</button>
+        <div class="settings-panel" id="settings-panel" role="dialog" aria-label="Settings" hidden></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container" id="main-content" style="padding: 48px 24px 96px;">
+  <div class="explainer" style="margin-bottom: 0;">
+    <h1 style="font-size: clamp(28px, 4vw, 38px); font-weight: 800; margin-bottom: 8px;">Privacy</h1>
+    <p style="margin-bottom: 32px;">
+      Short version: Aha Maths has no accounts, no login, and almost everything below stays
+      on your own device. We built it this way on purpose — a maths site for 5-year-olds
+      shouldn't need a data-collection policy longer than the lessons themselves.
+    </p>
+
+    <h2>What lives on your device</h2>
+    <p>
+      The site uses your browser's <code>localStorage</code> — a small store that never leaves your
+      device and is never sent to us or anyone else. It holds:
+    </p>
+    <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Language &amp; theme</strong> — your EN/हिंदी choice and your Dark/Light/Kid/High-contrast/Color-safe pick.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Accessibility prefs</strong> — text size, dyslexia-friendly font, reduced-motion setting.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Sound on/off</strong> — whether narration and sound effects are muted.</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Lesson &amp; story progress</strong> — which beats and lessons you've completed, so "Continue" and badges work.</div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-text"><strong>A first name, only if you type one</strong> — the Story of Numbers lets you optionally enter a name so the characters can greet you. It's optional, stored only on your device with your progress, and never sent anywhere.</div></div>
+    <p style="margin-top: 16px;">
+      You can clear all of it any time via your browser's site settings ("Clear site data" /
+      "Clear cookies and site data") — the site will simply forget your preferences and progress
+      and start fresh, exactly like a first visit.
+    </p>
+
+    <h2>The email signup</h2>
+    <p>
+      If you choose to submit your email for lesson updates, it's sent to our form provider
+      (currently <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener">Formspree</a>)
+      solely to email you about new lessons. We don't sell it, and you can unsubscribe any time.
+      Nothing is submitted unless you fill in and press that form yourself.
+    </p>
+
+    <h2>Analytics</h2>
+    <p>
+      We may use a privacy-first analytics tool (no cookies, no cross-site tracking, no personal
+      data — just aggregate counts like "how many people started this lesson") to see which
+      lessons are working and which need fixing. If and when this is switched on, it will be
+      named here.
+    </p>
+
+    <h2>Third-party video</h2>
+    <p>
+      Where a lesson embeds a YouTube Short, YouTube's own privacy policy applies to that
+      embedded player once you interact with it — we don't control that, only Google does.
+    </p>
+
+    <h2>Children</h2>
+    <p>
+      Aha Maths is made to be used by children, alongside a parent, teacher, or guardian. We never
+      ask for ages, photos, or contact details. The only optional input is a first name for the
+      Story of Numbers greeting (see point 5 above) — it stays on your device and is never collected,
+      sent, or seen by us.
+    </p>
+
+    <h2>Questions</h2>
+    <p>
+      Write to us at <a href="mailto:deshivaigyanik@gmail.com">deshivaigyanik@gmail.com</a>
+      with anything you're unsure about.
+    </p>
+    <p style="color: var(--text-lo); font-size: 13px; margin-top: 32px;">Last updated: July 2026.</p>
+  </div>
+</main>
+
+<!-- ── Footer ── -->
+<footer class="site-footer">
+  <div class="container">
+    <span>© <span id="footer-year">2026</span> Aha Maths</span>
+    · <a href="index.html">Home</a> · <a href="privacy.html">Privacy</a>
+  </div>
+</footer>
+
+<script type="module">
+  import { initI18n }           from './ui/i18n.js';
+  import { initTheme }          from './ui/theme.js';
+  import { initSettings }       from './ui/settings.js';
+  import { initAccessibility }  from './ui/accessibility.js';
+  import { initMobileNav }      from './ui/nav.js';
+
+  initTheme();
+  initAccessibility();
+  initMobileNav();
+  initI18n().then(initSettings);
+
+  const yr = document.getElementById('footer-year');
+  if (yr) yr.textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

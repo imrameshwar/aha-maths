@@ -1,0 +1,144 @@
+/* styles/scene-count.css — Count-Quest tap-and-count UI.
+   Loaded on learn.html; reused by the standalone Khoj page later. */
+
+.scene-count { margin-top: 8px; }
+
+.sc-stage {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--elev-3), var(--highlight-top);
+  background: var(--surface2);
+  touch-action: manipulation;
+}
+.sc-image {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  pointer-events: none;      /* clicks fall through to .sc-stage (ripple) */
+  user-select: none;
+}
+
+/* ── Hotspots (invisible over the drawn objects; the art is the affordance) ── */
+.sc-spot, .sc-decoy {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  aspect-ratio: 1;
+  border: none; background: none; padding: 0; margin: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+/* faint hint on desktop hover so testers/adults see the target; kids just tap the mango */
+@media (hover: hover) and (pointer: fine) {
+  .sc-spot:hover, .sc-decoy:hover { box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.22); }
+}
+.sc-spot:focus-visible, .sc-decoy:focus-visible {
+  outline: none; box-shadow: var(--ring);
+}
+.sc-spot.is-found {
+  box-shadow: 0 0 0 3px var(--primary), 0 0 20px var(--primary-glow);
+  animation: sc-pop var(--dur-3) var(--ease-spring);
+}
+.is-reduced .sc-spot.is-found { animation: none; }
+@keyframes sc-pop {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  55% { transform: translate(-50%, -50%) scale(1.18); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+.sc-check {
+  position: absolute; top: -6%; right: -6%;
+  width: 42%; height: 42%; min-width: 18px; min-height: 18px;
+  display: none;
+  align-items: center; justify-content: center;
+  background: var(--primary); color: var(--bg);
+  border-radius: 50%; font-size: 12px; font-weight: 800;
+  box-shadow: var(--elev-1);
+}
+.sc-spot.is-found .sc-check { display: flex; }
+
+.sc-decoy.sc-shake { animation: sc-shake 0.4s var(--ease-out); }
+@keyframes sc-shake {
+  0%, 100% { transform: translate(-50%, -50%) rotate(0); }
+  20% { transform: translate(-52%, -50%) rotate(-6deg); }
+  60% { transform: translate(-48%, -50%) rotate(6deg); }
+}
+
+/* ── Ripple on empty taps (no penalty) ── */
+.sc-ripples { position: absolute; inset: 0; pointer-events: none; }
+.sc-ripple {
+  position: absolute; width: 8%; aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  animation: sc-ripple 0.55s var(--ease-out) forwards;
+}
+@keyframes sc-ripple {
+  from { opacity: 0.7; transform: translate(-50%, -50%) scale(0.3); }
+  to   { opacity: 0;   transform: translate(-50%, -50%) scale(1.6); }
+}
+
+/* ── Counter readout (mono + fixed, per the numeric-readouts rule) ── */
+.sc-hud { display: flex; justify-content: center; margin-top: 16px; }
+.sc-counter {
+  font-family: var(--font-mono);
+  font-size: 26px; font-weight: 700;
+  color: var(--text-lo);
+  font-variant-numeric: tabular-nums;
+}
+.sc-counter .sc-num {
+  color: var(--primary);
+  text-shadow: 0 0 16px var(--primary-glow);
+}
+
+/* ── Decoy toast ── */
+.sc-toast {
+  margin: 12px auto 0; max-width: 420px;
+  text-align: center;
+  background: var(--surface2);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-full);
+  padding: 8px 18px;
+  font-size: 14px; font-weight: 600; color: var(--text-hi);
+  box-shadow: var(--elev-2);
+}
+.sc-toast.is-in { animation: sc-toast 0.3s var(--ease-spring); }
+@keyframes sc-toast {
+  from { opacity: 0; transform: translateY(-6px) scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ── Success ── */
+/* A non-block `display` overrides the [hidden] attribute — always re-assert it,
+   or the banner (+ mascot) shows before completion. (Same gotcha as .sc-toast.) */
+.sc-success[hidden], .sc-toast[hidden] { display: none !important; }
+.sc-success {
+  margin: 16px auto 0; max-width: 440px;
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  background:
+    radial-gradient(120% 160% at 50% 0%, var(--primary-wash), transparent 60%),
+    var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 18px 22px;
+  box-shadow: var(--elev-2), var(--highlight-top);
+}
+.sc-success.is-in { animation: sc-toast 0.4s var(--ease-spring); }
+.sc-success-mascot { flex-shrink: 0; filter: drop-shadow(0 6px 14px var(--primary-glow)); }
+.is-reduced .sc-success-mascot { animation: none; }
+.sc-success-text { font-size: 17px; font-weight: 800; color: var(--text-hi); }
+
+/* ── Confetti ── */
+.sc-confetti { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.sc-confetti-dot {
+  position: absolute; top: -8%;
+  animation-name: sc-fall; animation-timing-function: ease-in; animation-fill-mode: forwards;
+}
+@keyframes sc-fall {
+  from { opacity: 1; transform: translateY(0) rotate(0); }
+  to   { opacity: 0; transform: translateY(720%) rotate(540deg); }
+}

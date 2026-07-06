@@ -1,0 +1,217 @@
+/* styles/tokens.css — Aha Maths design-system foundation (single source of truth).
+   ────────────────────────────────────────────────────────────────────────────
+   PREMIUM PLAN · Phase 0. Import this FIRST on every page, before all other CSS.
+   Two layers:
+     1. THEME TOKENS  — colour palettes per [data-theme]. Values here are the
+        single source; style.css / hub.css / learn.css only *reference* them.
+        (Values are copied verbatim from the previous learn.css blocks — no
+        visual change; this just makes every page themeable, not only Learn.)
+     2. PREMIUM TOKENS — the new scaled system (colour derivations, elevation,
+        type scale, spacing, radius, motion). Additive substrate for Phase 1;
+        nothing consumes these yet, so P0 is a zero-visual-regression refactor.
+   Rule: never hardcode a hex/shadow/duration in a component — reach for a token. */
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   1 · THEME TOKENS  (palette — the only place raw brand hex may live)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Dark (default — matches engine/theme.js so video ↔ widget stay consistent) */
+:root,
+[data-theme="dark"] {
+  --bg:        #0B0F1A;
+  --surface:   #141A2A;
+  --surface2:  #1C2438;
+  --grid:      #222B3D;
+  --primary:   #22D3EE;
+  --secondary: #FBBF24;
+  --success:   #34D399;
+  --danger:    #F87171;
+  --accent2:   #A78BFA;
+  --text-hi:   #FFFFFF;
+  --text-lo:   #94A3B8;
+}
+
+[data-theme="light"] {
+  --bg:        #F8FAFC;
+  --surface:   #FFFFFF;
+  --surface2:  #F1F5F9;
+  --grid:      #E2E8F0;
+  --primary:   #0E7490;
+  --secondary: #B45309;
+  --success:   #047857;
+  --danger:    #DC2626;
+  --accent2:   #6D28D9;
+  --text-hi:   #0F172A;
+  --text-lo:   #475569;
+}
+
+[data-theme="hc"] {
+  --bg:        #000000;
+  --surface:   #0F0F0F;
+  --surface2:  #1A1A1A;
+  --grid:      #2A2A2A;
+  --primary:   #00F5FF;
+  --secondary: #FFD700;
+  --success:   #00FF88;
+  --danger:    #FF3333;
+  --accent2:   #CF9FFF;
+  --text-hi:   #FFFFFF;
+  --text-lo:   #DDDDDD;
+}
+
+/* Kid palette is deliberately deeper than a naive "pastel" pick: the original
+   bright pastels (#FF6B35/#F7B731/#20BF6B/#FC5C65/#A29BFE) measured 1.7–3.0:1
+   against this background — failing WCAG AA (4.5:1) badly, the worst possible
+   place for that gap given the audience. Same hue families, darkened until
+   every one clears ~4.6:1 as text (verified via a contrast-ratio script). */
+[data-theme="kid"] {
+  --bg:        #FFFBF0;
+  --surface:   #FFFFFF;
+  --surface2:  #FFF8E8;
+  --grid:      #FFE9C8;
+  --primary:   #C64900;
+  --secondary: #A26509;
+  --success:   #188149;
+  --danger:    #D7303B;
+  --accent2:   #6355F0;
+  --text-hi:   #1A1A2E;
+  --text-lo:   #6B5B95;
+}
+
+/* accent2/danger nudged lighter (same hue) — the originals measured 3.7:1 and
+   4.1:1 against this background: fine for large text only, not small labels.
+   Now both clear 4.6:1 at any size. */
+[data-theme="cb"] {
+  --bg:        #1A1A2E;
+  --surface:   #16213E;
+  --surface2:  #0F3460;
+  --grid:      #1F4068;
+  --primary:   #4CC9F0;
+  --secondary: #F77F00;
+  --success:   #80B918;
+  --danger:    #E94D59;
+  --accent2:   #AA66E2;
+  --text-hi:   #FFFFFF;
+  --text-lo:   #B0C4DE;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   2 · PREMIUM TOKENS  (theme-independent scales — the "intentional" layer)
+   ───────────────────────────────────────────────────────────────────────────
+   Derived colours use var(--primary…) so they auto-adapt to the active theme
+   (custom properties are late-bound at use time). Shadow/glow strengths are
+   tuned for the dark default and softened for light in §2b below.
+   ═══════════════════════════════════════════════════════════════════════════ */
+:root {
+
+  /* ── Layout ───────────────────────────────────────────── */
+  --max-w:        1100px;
+  --max-w-prose:  680px;
+
+  /* ── Colour derivations (wash / glow / strong, per hue) ── */
+  --primary-soft:    color-mix(in srgb, var(--primary)   14%, transparent);
+  --primary-wash:    color-mix(in srgb, var(--primary)    8%, transparent);
+  --primary-glow:    color-mix(in srgb, var(--primary)   45%, transparent);
+  --primary-strong:  color-mix(in srgb, var(--primary)   82%, var(--text-hi));
+
+  --secondary-soft:  color-mix(in srgb, var(--secondary) 14%, transparent);
+  --secondary-glow:  color-mix(in srgb, var(--secondary) 45%, transparent);
+
+  --accent2-soft:    color-mix(in srgb, var(--accent2)   14%, transparent);
+  --accent2-glow:    color-mix(in srgb, var(--accent2)   45%, transparent);
+
+  --success-soft:    color-mix(in srgb, var(--success)   14%, transparent);
+  --danger-soft:     color-mix(in srgb, var(--danger)    14%, transparent);
+
+  /* Hairline that reads as light, not ink */
+  --border:          var(--grid);
+  --border-soft:     color-mix(in srgb, var(--grid) 60%, transparent);
+
+  /* ── Signature gradients ──────────────────────────────── */
+  /* Page atmosphere: flat navy → a hint of depth (applied in P1, not P0). */
+  --bg-grad:      linear-gradient(180deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 88%, #000) 100%);
+  /* Hero keyword / glowing math accent */
+  --grad-accent:  linear-gradient(135deg, var(--primary) 0%, color-mix(in srgb, var(--primary) 55%, var(--accent2)) 100%);
+  /* Primary CTA fill */
+  --grad-primary: linear-gradient(135deg, color-mix(in srgb, var(--primary) 92%, #fff) 0%, var(--primary) 100%);
+  /* Ambient hero glows (very low opacity radial washes) */
+  --glow-hero:
+    radial-gradient(60% 80% at 15% 10%,  var(--primary-wash), transparent 60%),
+    radial-gradient(50% 70% at 90% 30%,  color-mix(in srgb, var(--accent2) 7%, transparent), transparent 60%);
+
+  /* ── Elevation (soft, layered — replaces hairline borders in P1) ── */
+  --elev-1: 0 1px 2px rgba(0,0,0,.20);
+  --elev-2: 0 4px 12px rgba(0,0,0,.28), 0 1px 3px rgba(0,0,0,.20);
+  --elev-3: 0 12px 32px rgba(0,0,0,.35), 0 4px 8px rgba(0,0,0,.22);
+  --elev-4: 0 24px 64px rgba(0,0,0,.45), 0 8px 16px rgba(0,0,0,.28);
+  /* Top inner-highlight: surfaces lit from above instead of outlined */
+  --highlight-top: inset 0 1px 0 rgba(255,255,255,.06);
+  /* Reusable focus ring */
+  --ring: 0 0 0 3px var(--primary-glow);
+
+  /* ── Typography ───────────────────────────────────────── */
+  --font-sans:  'Plus Jakarta Sans', 'Mukta', system-ui, -apple-system, sans-serif;
+  --font-mono:  'JetBrains Mono', ui-monospace, monospace;
+  --font-num:   "tnum" 1, "lnum" 1;          /* tabular, lining figures */
+
+  --fs-display: clamp(2.5rem, 6.5vw, 5.25rem);   /* 40 → 84px  hero      */
+  --fs-h1:      clamp(1.75rem, 4vw, 3rem);       /* 28 → 48px            */
+  --fs-h2:      clamp(1.5rem, 3vw, 2rem);        /* 24 → 32px            */
+  --fs-h3:      1.25rem;                          /* 20px                */
+  --fs-lg:      1.125rem;                         /* 18px                */
+  --fs-body:    1rem;                             /* 16px                */
+  --fs-sm:      0.875rem;                         /* 14px                */
+  --fs-caption: 0.75rem;                          /* 12px  eyebrows      */
+
+  --tracking-display: -0.03em;
+  --tracking-tight:   -0.02em;
+  --tracking-normal:   0;
+  --tracking-caps:     0.08em;                    /* uppercase eyebrows  */
+
+  --leading-tight: 1.05;
+  --leading-snug:  1.2;
+  --leading-body:  1.6;
+
+  /* ── Spacing (8-pt rhythm) ────────────────────────────── */
+  --sp-1: 4px;   --sp-2: 8px;   --sp-3: 12px;  --sp-4: 16px;
+  --sp-5: 24px;  --sp-6: 32px;  --sp-7: 48px;  --sp-8: 64px;
+  --sp-9: 96px;  --sp-10: 128px;
+  --section-y: clamp(48px, 8vw, 96px);            /* standard section padding */
+
+  /* ── Radius ───────────────────────────────────────────── */
+  --radius-sm:   8px;
+  --radius:      12px;                            /* kept: existing default   */
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-full: 999px;
+
+  /* ── Glass / blur ─────────────────────────────────────── */
+  --blur: 10px;                                   /* matches sticky header    */
+
+  /* ── Z-index ladder ───────────────────────────────────── */
+  --z-base:    1;
+  --z-raised:  10;
+  --z-sticky:  100;
+  --z-overlay: 200;
+  --z-modal:   1000;
+  --z-toast:   9999;
+
+  /* ── Motion (one personality for the whole product) ───── */
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);   /* playful pop        */
+  --ease-out:    cubic-bezier(.16, 1, .3, 1);       /* refined UI settle  */
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+  --dur-1: .12s;   --dur-2: .2s;   --dur-3: .35s;   --dur-4: .6s;
+}
+
+/* ── §2b · Elevation/glow softened for light-family themes ── */
+[data-theme="light"],
+[data-theme="kid"] {
+  --elev-1: 0 1px 2px rgba(15,23,42,.06);
+  --elev-2: 0 4px 12px rgba(15,23,42,.08), 0 1px 3px rgba(15,23,42,.06);
+  --elev-3: 0 12px 28px rgba(15,23,42,.12), 0 4px 8px rgba(15,23,42,.08);
+  --elev-4: 0 24px 56px rgba(15,23,42,.16), 0 8px 16px rgba(15,23,42,.10);
+  --highlight-top: inset 0 1px 0 rgba(255,255,255,.7);
+  --bg-grad: linear-gradient(180deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 92%, var(--primary)) 100%);
+}

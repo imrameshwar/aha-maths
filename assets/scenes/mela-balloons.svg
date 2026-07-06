@@ -1,0 +1,68 @@
+<!--
+  mela-balloons.svg — Count-Quest PLACEHOLDER scene (code-drawn stand-in).
+
+  Hand-drawn stand-in for a curated Higgsfield "Soul" still (a village fair /
+  mela with a balloon seller). Swap the still in later + re-author hotspots in
+  tools/hotspot-author.html + repoint content/scenes/mela-balloons.json.
+  HARD RULE: the count (6) + hotspot coords are code-owned TRUTH, never the pixels.
+  6 balloons, all fully visible / separated / similar scale + 1 decoy kite.
+  viewBox 800×600 (4:3); hotspots normalised to it.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img"
+     aria-label="A bright fair with colourful balloons floating in the sky">
+  <defs>
+    <linearGradient id="mbSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#BFE3FF"/>
+      <stop offset="1" stop-color="#EAF6FF"/>
+    </linearGradient>
+
+    <!-- one balloon, centred on origin; body+knot use currentColor -->
+    <g id="mbBalloon">
+      <path d="M0,22 q13,28 -3,58" fill="none" stroke="#8C97A6" stroke-width="2"/>
+      <ellipse cx="0" cy="-8" rx="26" ry="32" fill="currentColor"/>
+      <path d="M0,26 l-6,-9 l12,0 Z" fill="currentColor"/>
+      <ellipse cx="-9" cy="-20" rx="6" ry="10" fill="#FFFFFF" opacity="0.34"/>
+    </g>
+
+    <!-- the decoy: a kite / patang (clearly not a balloon) -->
+    <g id="mbKite">
+      <path d="M0,-28 L22,0 L0,28 L-22,0 Z" fill="#E23B3B"/>
+      <path d="M0,-28 L0,28 M-22,0 L22,0" stroke="#FFFFFF" stroke-width="1.5" opacity="0.6"/>
+      <path d="M0,28 q7,11 -3,17 q10,5 4,15" fill="none" stroke="#E23B3B" stroke-width="2"/>
+    </g>
+  </defs>
+
+  <!-- sky -->
+  <rect width="800" height="600" fill="url(#mbSky)"/>
+  <!-- soft clouds -->
+  <g fill="#FFFFFF" opacity="0.7">
+    <ellipse cx="120" cy="140" rx="60" ry="22"/>
+    <ellipse cx="600" cy="110" rx="70" ry="24"/>
+  </g>
+  <!-- bunting across the top -->
+  <path d="M0,54 Q400,86 800,54" fill="none" stroke="#C7823F" stroke-width="2"/>
+  <g>
+    <path d="M70,60 l22,0 l-11,20 Z"  fill="#EF5350"/>
+    <path d="M190,68 l22,0 l-11,20 Z" fill="#42A5F5"/>
+    <path d="M330,76 l22,0 l-11,20 Z" fill="#66BB6A"/>
+    <path d="M470,76 l22,0 l-11,20 Z" fill="#FFCA28"/>
+    <path d="M610,68 l22,0 l-11,20 Z" fill="#AB47BC"/>
+    <path d="M720,60 l22,0 l-11,20 Z" fill="#EC407A"/>
+  </g>
+  <!-- distant fair tents along the ground -->
+  <path d="M0,560 L800,560 L800,600 L0,600 Z" fill="#CBB089"/>
+  <path d="M120,560 L165,505 L210,560 Z" fill="#E88B4B"/>
+  <path d="M330,560 L380,500 L430,560 Z" fill="#5FB3C4"/>
+  <path d="M560,560 L610,508 L660,560 Z" fill="#D96B7C"/>
+
+  <!-- THE 6 BALLOONS (the countable truth — matches content/scenes/mela-balloons.json) -->
+  <use href="#mbBalloon" transform="translate(170 220)" style="color:#E24A4A"/>
+  <use href="#mbBalloon" transform="translate(330 175)" style="color:#3B82F6"/>
+  <use href="#mbBalloon" transform="translate(500 200)" style="color:#2FB673"/>
+  <use href="#mbBalloon" transform="translate(655 245)" style="color:#F59E0B"/>
+  <use href="#mbBalloon" transform="translate(250 380)" style="color:#A855F7"/>
+  <use href="#mbBalloon" transform="translate(520 380)" style="color:#EC5A92"/>
+
+  <!-- THE DECOY -->
+  <use href="#mbKite" transform="translate(700 110)"/>
+</svg>

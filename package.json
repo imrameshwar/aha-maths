@@ -1,0 +1,12 @@
+{
+  "name": "aha-maths-website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Aha Maths — public website AND source of truth for the dual-mode sim code (engine/ + visualizers/). Standalone, deployable static site; `npm run sync` pushes the sim code to the Aha Maths Studio for rendering.",
+  "scripts": {
+    "serve":   "node scripts/serve.mjs",
+    "sync":    "node scripts/sync.mjs",
+    "sitemap": "node scripts/gen-sitemap.mjs"
+  }
+}

@@ -1,0 +1,162 @@
+/* styles/khoj.css — "Aaj ka Khoj" standalone daily Count-Quest page.
+   Full-screen, playful, mobile-first. Reuses styles/scene-count.css for the
+   tap-and-count stage; this file owns the page shell + the shareable result card. */
+
+.khoj-main {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 20px 64px;
+}
+.khoj-shell {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Head ── */
+.khoj-head { text-align: center; margin-bottom: 18px; }
+.khoj-kicker {
+  font-size: 14px; font-weight: 800; letter-spacing: 0.04em;
+  color: var(--secondary);
+  text-transform: uppercase;
+}
+.khoj-title {
+  margin: 6px 0 10px;
+  font-size: clamp(30px, 8vw, 46px);
+  font-weight: 800; letter-spacing: -0.02em;
+  line-height: 1.05;
+  background: var(--grad-accent);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  filter: drop-shadow(0 2px 18px var(--primary-glow));
+}
+.khoj-prompt {
+  font-size: clamp(16px, 4.4vw, 19px);
+  font-weight: 600; color: var(--text-hi);
+  max-width: 30ch; margin: 0 auto;
+}
+
+/* ── Stage (the scene / fallback mounts here) ── */
+.khoj-stage { width: 100%; }
+/* Give the Khoj its own, bigger stage than the in-lesson version. */
+.khoj-stage .sc-stage { max-width: 620px; }
+.khoj-stage .sc-counter { font-size: 32px; }
+/* The Khoj result card is the celebration surface here, so suppress scene-count's
+   own success banner (its confetti + chime still fire). Avoids "You found all 5…"
+   sitting right above "I found all 5…". */
+.khoj-stage .sc-success { display: none !important; }
+
+/* Dot-grid fallback (Save-Data / offline / no image) */
+.khoj-fallback { width: 100%; max-width: 620px; margin: 0 auto; }
+.khoj-dot-grid {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;
+  padding: 28px; border-radius: var(--radius-lg);
+  background: var(--surface2);
+  box-shadow: var(--elev-2), var(--highlight-top);
+}
+.khoj-dot {
+  width: 64px; height: 64px; border-radius: 50%;
+  border: 2px solid var(--border-soft); background: var(--surface);
+  cursor: pointer; padding: 0;
+  transition: transform var(--dur-2) var(--ease-spring), box-shadow var(--dur-2), background var(--dur-2);
+  -webkit-tap-highlight-color: transparent;
+}
+.khoj-dot:hover { border-color: var(--primary); }
+.khoj-dot:focus-visible { outline: none; box-shadow: var(--ring); }
+.khoj-dot.is-tapped {
+  background: var(--primary); border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-glow);
+  transform: scale(1.06);
+}
+.is-reduced .khoj-dot, [data-motion="reduce"] .khoj-dot { transition: none; }
+
+/* ── Result card ── */
+/* A non-block display defeats [hidden] — always re-assert it (repo gotcha). */
+.khoj-result[hidden], .khoj-card-preview[hidden], .khoj-share[hidden] { display: none !important; }
+.khoj-result {
+  width: 100%; max-width: 480px; margin: 28px auto 0;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: 14px; padding: 28px 24px 26px;
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(120% 150% at 50% 0%, var(--primary-wash), transparent 62%),
+    var(--surface);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--elev-3), var(--highlight-top);
+}
+.khoj-result.is-in { animation: khoj-pop 0.5s var(--ease-spring); }
+@keyframes khoj-pop {
+  from { opacity: 0; transform: translateY(14px) scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .khoj-result.is-in { animation: none; }
+}
+
+.khoj-result-kicker {
+  font-size: 15px; font-weight: 800; letter-spacing: 0.02em;
+  color: var(--success);
+}
+.khoj-result-badge {
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+}
+.khoj-result-emoji { font-size: 60px; line-height: 1; }
+.khoj-result-score {
+  font-family: var(--font-mono); font-weight: 800;
+  font-size: 58px; color: var(--primary);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 22px var(--primary-glow);
+}
+.khoj-result-line {
+  font-size: 19px; font-weight: 800; color: var(--text-hi);
+  max-width: 26ch;
+}
+.khoj-card-preview {
+  width: 100%; max-width: 300px; margin-top: 4px;
+  border-radius: var(--radius);
+  box-shadow: var(--elev-2);
+  border: 1px solid var(--border-soft);
+}
+
+/* ── Actions ── */
+.khoj-actions {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+  margin-top: 6px; width: 100%;
+}
+.khoj-btn {
+  font-family: inherit; font-size: 15px; font-weight: 800;
+  padding: 12px 20px; border-radius: var(--radius-full);
+  border: none; cursor: pointer;
+  transition: transform var(--dur-1) var(--ease-spring), filter var(--dur-2), box-shadow var(--dur-2);
+}
+.khoj-btn:active { transform: scale(0.97); }
+.khoj-btn:focus-visible { outline: none; box-shadow: var(--ring); }
+.khoj-share {
+  background: var(--grad-primary); color: var(--bg);
+  box-shadow: 0 6px 18px var(--primary-glow);
+  flex-basis: 100%;
+}
+.khoj-share:hover { filter: brightness(1.06); }
+.khoj-secondary {
+  background: var(--surface2); color: var(--text-hi);
+  border: 1px solid var(--border-soft);
+}
+.khoj-secondary:hover { border-color: var(--primary); color: var(--primary); }
+.khoj-secondary.is-ok { color: var(--success); border-color: var(--success); }
+.khoj-ghost {
+  background: transparent; color: var(--text-lo);
+  border: 1px solid transparent;
+}
+.khoj-ghost:hover { color: var(--text-hi); }
+@media (prefers-reduced-motion: reduce) {
+  .khoj-btn { transition: none; }
+  .khoj-btn:active { transform: none; }
+}
+
+/* The Khoj nav pill (.site-nav-khoj) lives in style.css alongside .site-nav-learn
+   so both the homepage and this page pick it up; the homepage invite banner
+   (.khoj-invite) lives in hub.css. */

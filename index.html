@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aha Maths — Math you watch. Math you play.</title>
+  <meta name="description" content="Visual, satisfying mathematics explained in Hinglish. Watch the Short, then play with the interactive simulation. A new way to feel the aha moment.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Aha Maths — Math you watch. Math you play.">
+  <meta property="og:description" content="Visual mathematics in Hinglish. Watch the Short, play the simulation, feel the aha.">
+  <meta property="og:url"         content="https://ahamaths.com/">
+  <meta property="og:image"       content="https://ahamaths.com/assets/og-image.png">
+  <meta property="og:image:width"  content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Aha Maths — Math you watch. Math you play.">
+  <meta name="twitter:description" content="Visual mathematics in Hinglish. Watch the Short, play the simulation, feel the aha.">
+  <meta name="twitter:image"       content="https://ahamaths.com/assets/og-image.png">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Aha Maths",
+    "url": "https://ahamaths.com/",
+    "logo": "https://ahamaths.com/assets/icon-512.png",
+    "description": "Visual, bilingual (English & हिंदी) mathematics for curious minds of any age — math you watch, not math you study.",
+    "sameAs": ["https://www.youtube.com/@AhaMathsOfficial"]
+  }
+  </script>
+
+  <link rel="canonical" href="https://ahamaths.com/">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <!-- Inline theme init — runs before CSS to eliminate flash of wrong theme -->
+  <script>
+    (function () {
+      var t = localStorage.getItem('am-theme');
+      if (t) { document.documentElement.setAttribute('data-theme', t); return; }
+      if (!window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/hub.css">
+  <!-- Flash-free scroll-reveal: hide targets before first paint (skipped if reduced-motion) -->
+  <script>
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('reveal-ready');
+    }
+  </script>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- ── Header ── -->
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="index.html">
+      <div class="logo-mark">AM</div>
+      Aha Maths
+    </a>
+    <nav class="site-nav" id="site-nav">
+      <a href="numbers-story.html" class="site-nav-story">✨ <span data-i18n="home.nav_story">Story</span></a>
+      <a href="khoj.html" class="site-nav-khoj">🥭 <span data-i18n="home.nav_khoj">Khoj</span></a>
+      <a href="cinema.html" class="site-nav-cinema">🎬 <span data-i18n="home.nav_cinema">Cinematic</span></a>
+      <a href="learn.html?lesson=1-01-counting" class="site-nav-learn">📚 <span data-i18n="home.nav_learn">Learn</span></a>
+      <a class="handle-link" href="https://www.youtube.com/@AhaMathsOfficial" target="_blank" rel="noopener">@AhaMathsOfficial ↗</a>
+    </nav>
+    <div class="header-actions">
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <div class="settings-wrapper">
+        <button
+          class="settings-toggle"
+          id="settings-btn"
+          aria-label="Settings"
+          aria-expanded="false"
+          aria-haspopup="dialog"
+          title="Settings"
+        >⚙</button>
+        <div
+          class="settings-panel"
+          id="settings-panel"
+          role="dialog"
+          aria-label="Settings"
+          hidden
+        ></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── Hero ── -->
+<section class="hero" id="main-content">
+  <div class="hero-ambient" id="hero-ambient" aria-hidden="true"></div>
+  <div class="container">
+    <p class="hero-eyebrow" data-i18n="home.hero_eyebrow">Ganit dekho · khelo · samajho</p>
+    <h1><span data-i18n="home.hero_title_pre">The</span> <span class="hero-highlight" data-i18n="home.hero_title_span">aha moment</span><span data-i18n="home.hero_title_comma">,</span><br><span data-i18n="home.hero_title_post">not the textbook.</span></h1>
+    <p data-i18n="home.hero_desc">Visual mathematics in Hinglish — see it, play it, understand it. For curious minds of any age.</p>
+    <a class="btn-primary hero-cta" href="learn.html?lesson=1-01-counting" data-i18n="home.hero_cta">Start Learning →</a>
+    <p class="hero-trust" data-i18n="home.hero_trust">Free · No account · English &amp; हिंदी</p>
+  </div>
+</section>
+
+<!-- ── Showcase: dekho · khelo · samajho ── -->
+<section class="container">
+  <div class="showcase">
+
+    <a class="show-card" href="numbers-story.html">
+      <div class="show-visual show-visual--see" aria-hidden="true">
+        <span class="sv-eye"></span>
+      </div>
+      <div class="show-step">01</div>
+      <h3><span data-i18n="home.show_see_title">Dekho</span> <span class="show-sub" data-i18n="home.show_see_span">· See it</span></h3>
+      <p data-i18n="home.show_see_desc">Watch an idea come alive — numbers invented scene by scene, math you actually see move.</p>
+      <span class="show-cta" data-i18n="home.show_see_cta">Play the Story →</span>
+    </a>
+
+    <a class="show-card" href="learn.html?lesson=1-01-counting">
+      <div class="show-visual show-visual--play" aria-hidden="true">
+        <span class="sv-dot"></span><span class="sv-dot"></span><span class="sv-dot"></span>
+      </div>
+      <div class="show-step">02</div>
+      <h3><span data-i18n="home.show_play_title">Khelo</span> <span class="show-sub" data-i18n="home.show_play_span">· Play it</span></h3>
+      <p data-i18n="home.show_play_desc">Touch the idea within seconds — drag, tap, slide. Understanding through play, not prose.</p>
+      <span class="show-cta" data-i18n="home.show_play_cta">Start a lesson →</span>
+    </a>
+
+    <a class="show-card" href="area-of-circle.html">
+      <div class="show-visual show-visual--aha" aria-hidden="true">
+        <span class="sv-spark">✦</span>
+      </div>
+      <div class="show-step">03</div>
+      <h3><span data-i18n="home.show_aha_title">Samajho</span> <span class="show-sub" data-i18n="home.show_aha_span">· Understand it</span></h3>
+      <p data-i18n="home.show_aha_desc">The moment it clicks — one clean visual, one line, and the "aha" lands for good.</p>
+      <span class="show-cta" data-i18n="home.show_aha_cta">See an aha →</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- ── Aaj ka Khoj (daily tap-and-count) ── -->
+<section class="container">
+  <a class="khoj-invite" href="khoj.html">
+    <span class="khoj-invite-emoji" aria-hidden="true">🥭</span>
+    <div class="khoj-invite-body">
+      <div class="khoj-invite-kicker" data-i18n="home.khoj_invite_kicker">✨ New · Daily</div>
+      <div class="khoj-invite-title" data-i18n="home.khoj_invite_title">Aaj ka Khoj</div>
+      <div class="khoj-invite-desc" data-i18n="home.khoj_invite_desc">Today's tap-and-count find. Spot them all, share your score.</div>
+    </div>
+    <span class="khoj-invite-cta" data-i18n="home.khoj_invite_cta">Play today's →</span>
+  </a>
+</section>
+
+<!-- ── Continue banner (shown only if user has progress) ── -->
+<section class="container">
+  <div id="hub-continue" hidden></div>
+</section>
+
+<!-- ── Featured story ── -->
+<section class="container">
+  <a class="story-feature" href="numbers-story.html">
+    <div class="story-feature-art" aria-hidden="true">
+      <span class="sfa-digit" style="--d:0s">0</span>
+      <span class="sfa-digit" style="--d:.15s">1</span>
+      <span class="sfa-digit" style="--d:.30s">2</span>
+      <span class="sfa-digit" style="--d:.45s">3</span>
+      <span class="sfa-digit sfa-zero" style="--d:.60s">0</span>
+    </div>
+    <div class="story-feature-body">
+      <span class="story-feature-kicker" data-i18n="home.story_kicker">✨ New · Interactive Story</span>
+      <h2 data-i18n="home.story_title">The Story of Numbers</h2>
+      <p data-i18n="home.story_desc">Play the invention of numbers, scene by scene — match sheep to stones, slide the digit that becomes 200, drag zero into place. Hands-on, with audio narration.</p>
+      <span class="story-feature-cta"><span data-i18n="home.story_cta_play">▶ Play the story →</span>&nbsp;&nbsp;·&nbsp;&nbsp;<span style="color:var(--text-lo)" data-i18n="home.story_cta_or">or watch the cinematic cut</span></span>
+    </div>
+  </a>
+</section>
+
+<!-- ── World map ── -->
+<section class="hub-worlds-section">
+  <div class="container">
+    <h2 class="section-title" data-i18n="home.worlds_title">Ganit ka Naksha</h2>
+    <p class="section-sub" data-i18n="home.worlds_sub">8 worlds · basic to beautiful · start anywhere</p>
+    <div class="hub-gems" id="hub-gems" hidden></div>
+    <div class="hub-worlds-grid" id="hub-worlds">
+      <!-- rendered by hub.js -->
+      <div class="world-card-skeleton"></div>
+      <div class="world-card-skeleton"></div>
+      <div class="world-card-skeleton"></div>
+      <div class="world-card-skeleton"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Simulations (Play mode) ── -->
+<section class="hub-sims-section">
+  <div class="container">
+    <h2 class="section-title" data-i18n="home.play_title">Play Mode</h2>
+    <p class="section-sub" data-i18n="home.play_sub">Free-play interactive simulations — no lesson structure, just exploration.</p>
+    <div class="sim-grid">
+
+      <a class="sim-card" href="area-of-circle.html">
+        <div class="sim-card-thumb" style="background:linear-gradient(135deg,#0B0F1A 0%,#0E2030 100%)">πr²</div>
+        <div class="sim-card-body">
+          <div class="sim-card-title" data-i18n="home.sim_circle_title">Area of a Circle = πr²</div>
+          <div class="sim-card-hook" data-i18n="home.sim_circle_hook">Why πr²? Slice it like pizza 🍕</div>
+          <div class="sim-card-tag" data-i18n="home.sim_watch_play">▶ Watch + Play →</div>
+        </div>
+      </a>
+
+      <div class="sim-card sim-card-coming-soon">
+        <div class="sim-card-thumb" data-i18n="home.sim_coming_soon">Coming soon</div>
+        <div class="sim-card-body">
+          <div class="sim-card-title" data-i18n="home.sim_pyth_title">Pythagoras Theorem</div>
+          <div class="sim-card-hook" data-i18n="home.sim_pyth_hook">a² + b² = c², seen not memorised</div>
+          <div class="sim-card-tag" data-i18n="home.sim_planned">Planned</div>
+        </div>
+      </div>
+
+      <div class="sim-card sim-card-coming-soon">
+        <div class="sim-card-thumb" data-i18n="home.sim_coming_soon">Coming soon</div>
+        <div class="sim-card-body">
+          <div class="sim-card-title">−  ×  − = +</div>
+          <div class="sim-card-hook" data-i18n="home.sim_neg_hook">The number-line flip</div>
+          <div class="sim-card-tag" data-i18n="home.sim_planned">Planned</div>
+        </div>
+      </div>
+
+      <div class="sim-card sim-card-coming-soon">
+        <div class="sim-card-thumb" data-i18n="home.sim_coming_soon">Coming soon</div>
+        <div class="sim-card-body">
+          <div class="sim-card-title" data-i18n="home.sim_monte_title">Monte Carlo π</div>
+          <div class="sim-card-hook" data-i18n="home.sim_monte_hook">Random dots → π 🤯</div>
+          <div class="sim-card-tag" data-i18n="home.sim_planned">Planned</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── For every age ── -->
+<section class="container">
+  <div class="ages">
+    <div class="ages-copy">
+      <h2><span data-i18n="home.ages_title_pre">One map.</span> <span class="ages-highlight" data-i18n="home.ages_title_span">Every age.</span></h2>
+      <p data-i18n="home.ages_desc">From a five-year-old counting rotis to a hundred-year-old rediscovering zero — the same
+         path, walked at your own depth. The only prerequisite is curiosity.</p>
+    </div>
+    <div class="ages-row">
+      <div class="age-chip"><span class="age-emoji">🧒</span><b data-i18n="home.age_5_label">Age 5</b><i data-i18n="home.age_5_desc">Counts along, no reading needed</i></div>
+      <div class="age-chip"><span class="age-emoji">🎓</span><b data-i18n="home.age_student_label">Student</b><i data-i18n="home.age_student_desc">Finally sees why it works</i></div>
+      <div class="age-chip"><span class="age-emoji">👵</span><b data-i18n="home.age_100_label">Age 100</b><i data-i18n="home.age_100_desc">Rediscovers the wonder</i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Email capture ── -->
+<section class="container">
+  <div class="email-section">
+    <h2 data-i18n="home.email_title">Get notified of new lessons</h2>
+    <p data-i18n="home.email_desc">New visual lessons drop weekly. No spam — just math that makes you go "aha."</p>
+    <!-- Newsletter delivery: create a Formspree form (sign in with the brand Gmail
+         deshivaigyanik@gmail.com), then replace REPLACE_WITH_FORM_ID with the /f/<id>. -->
+    <form class="email-form" id="email-form"
+          action="https://formspree.io/f/REPLACE_WITH_FORM_ID"
+          method="POST">
+      <!-- Honeypot: humans never fill this; Formspree silently drops bots that do. -->
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"
+             style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+      <input type="email" name="email" data-i18n-placeholder="home.email_placeholder" placeholder="your@email.com" required autocomplete="email">
+      <button type="submit" data-i18n="home.email_submit">Notify me</button>
+    </form>
+    <p class="email-note" data-i18n="home.email_note">Unsubscribe any time. No algorithms involved.</p>
+    <p class="form-success" id="form-success" data-i18n="home.email_success">✓ You're in! Watch for the next aha.</p>
+    <p class="form-error" id="form-error" data-i18n="home.email_error" hidden>Hmm, that didn't go through — please try again.</p>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="index.html">
+          <div class="logo-mark">AM</div>
+          Aha Maths
+        </a>
+        <p class="footer-tagline"><span data-i18n="home.footer_tagline">Ganit dekho · khelo · samajho.</span><br><span data-i18n="home.footer_tagline2">Visual mathematics for curious minds of any age.</span></p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <span class="footer-col-title" data-i18n="home.footer_explore">Explore</span>
+        <a href="learn.html?lesson=1-01-counting" data-i18n="home.footer_learn">Learn</a>
+        <a href="numbers-story.html" data-i18n="home.footer_story">Story of Numbers</a>
+        <a href="area-of-circle.html" data-i18n="home.footer_play">Play mode</a>
+      </nav>
+      <nav class="footer-nav" aria-label="Elsewhere">
+        <span class="footer-col-title" data-i18n="home.footer_follow">Follow</span>
+        <a href="https://www.youtube.com/@AhaMathsOfficial" target="_blank" rel="noopener">YouTube @AhaMathsOfficial ↗</a>
+        <a href="privacy.html" data-i18n="home.footer_privacy">Privacy</a>
+      </nav>
+    </div>
+    <div class="footer-base">
+      <span>© <span id="footer-year">2026</span> Aha Maths</span>
+      <span data-i18n="home.footer_made">Made with love &amp; math</span>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+  import { initHub }           from './ui/hub.js';
+  import { initMotion }        from './ui/motion.js';
+  import { initTheme }         from './ui/theme.js';
+  import { initAccessibility } from './ui/accessibility.js';
+  import { initI18n, getLang } from './ui/i18n.js';
+  import { initSettings }      from './ui/settings.js';
+  import { initMobileNav }     from './ui/nav.js';
+
+  initTheme();
+  initAccessibility();
+  initMobileNav();
+
+  async function main() {
+    await initI18n();
+    initSettings();
+    initHub(getLang());
+    document.addEventListener('am:langchange', e => initHub(e.detail.lang));
+  }
+  main().catch(console.error);
+
+  initMotion();
+  const yr = document.getElementById('footer-year');
+  if (yr) yr.textContent = new Date().getFullYear();
+
+  // Defer the ambient hero canvas: load p5 (1.1MB) only once the browser is
+  // idle (or after a timeout fallback), never blocking first paint/LCP.
+  function loadHeroAmbient() {
+    const s = document.createElement('script');
+    s.src = 'lib/p5.min.js';
+    s.onload = () => {
+      import('./ui/hero-ambient.js').then(({ initHeroAmbient }) => {
+        initHeroAmbient(document.getElementById('hero-ambient'));
+      });
+    };
+    document.head.appendChild(s);
+  }
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(loadHeroAmbient, { timeout: 2000 });
+  } else {
+    setTimeout(loadHeroAmbient, 300);
+  }
+</script>
+
+<script>
+  document.getElementById('email-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const btn  = form.querySelector('button');
+    const err  = document.getElementById('form-error');
+    err.hidden = true;
+    btn.disabled = true;
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' },
+      });
+      if (!res.ok) throw new Error('bad response');
+      form.style.display = 'none';
+      document.querySelector('.email-note').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    } catch {
+      err.hidden = false;        // show the translated error, let them retry
+      btn.disabled = false;
+    }
+  });
+</script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    if (['localhost', '127.0.0.1'].includes(location.hostname)) {
+      navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
+      if (window.caches) caches.keys().then(ks => ks.forEach(k => caches.delete(k)));
+    } else {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    }
+  }
+</script>
+
+</body>
+</html>

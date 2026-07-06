@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aha Maths — Learn</title>
+  <meta name="description" content="Ganit dekho, khelo, samajho. Visual maths for everyone.">
+
+  <!-- Structured data (per-lesson LearningResource; ui/lesson.js refines it once the lesson loads) -->
+  <script type="application/ld+json" id="lesson-ld">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "Aha Maths — Interactive Lessons",
+    "description": "Interactive, bilingual (English & हिंदी) maths lessons — each a 5-beat visual journey: Hook, Play, Aha, Check, Connect.",
+    "educationalLevel": "All ages",
+    "learningResourceType": "Interactive lesson",
+    "inLanguage": ["en", "hi"],
+    "isAccessibleForFree": true,
+    "url": "https://ahamaths.com/learn.html",
+    "provider": { "@type": "Organization", "name": "Aha Maths", "url": "https://ahamaths.com/" }
+  }
+  </script>
+
+  <!-- Inline theme init — runs before CSS to eliminate flash of wrong theme -->
+  <script>
+    (function () {
+      var t = localStorage.getItem('am-theme');
+      if (t) { document.documentElement.setAttribute('data-theme', t); return; }
+      if (!window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/learn.css">
+  <link rel="stylesheet" href="styles/scene-count.css">
+  <!-- p5 as global UMD so ES-module visualizers can use window.p5 -->
+  <script src="lib/p5.min.js"></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- ── Header ── -->
+<header class="site-header learn-header">
+  <div class="container">
+
+    <a class="logo" href="index.html">
+      <div class="logo-mark">AM</div>
+      <span data-i18n="ui.aha_maths">Aha Maths</span>
+    </a>
+
+    <nav class="learn-nav" aria-label="Site navigation">
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="learn.html" class="is-active" data-i18n="nav.learn">Learn</a>
+    </nav>
+
+    <!-- Settings button + panel -->
+    <div class="settings-wrapper">
+      <button
+        class="settings-toggle"
+        id="settings-btn"
+        aria-label="Settings"
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        title="Settings"
+      >⚙</button>
+      <div
+        class="settings-panel"
+        id="settings-panel"
+        role="dialog"
+        aria-label="Settings"
+        hidden
+      ></div>
+    </div>
+
+  </div>
+</header>
+
+<!-- ── Lesson shell ── -->
+<main class="learn-main" id="main-content">
+  <div class="container">
+
+    <!-- World badge + lesson title -->
+    <header class="lesson-header">
+      <div class="lesson-world-badge" id="lesson-world-badge">…</div>
+      <h1 class="lesson-title" id="lesson-title"> </h1>
+      <p  class="lesson-subtitle" id="lesson-subtitle"> </p>
+    </header>
+
+    <!-- 5-beat progress nav -->
+    <nav class="beat-nav" id="beat-nav" aria-label="Lesson steps"></nav>
+
+    <!-- Active beat content -->
+    <div id="lesson-container" class="lesson-container"></div>
+
+    <!-- Prev / Next controls -->
+    <div class="beat-controls">
+      <button class="beat-nav-btn" id="beat-prev" disabled>← Back</button>
+      <button class="beat-nav-btn beat-nav-next" id="beat-next">Next →</button>
+    </div>
+
+  </div>
+</main>
+
+<script type="module">
+  import { initI18n, t }        from './ui/i18n.js';
+  import { initTheme }          from './ui/theme.js';
+  import { initSettings }       from './ui/settings.js';
+  import { initAccessibility }  from './ui/accessibility.js';
+  import { loadLesson, getLessonIdFromURL } from './ui/lesson.js';
+
+  async function main() {
+    // 1. Theme is already applied by the inline script above; this wires events.
+    initTheme();
+
+    // 2. Apply saved accessibility prefs (font size, font, motion).
+    initAccessibility();
+
+    // 3. Load string dictionaries.
+    await initI18n();
+
+    // 4. Wire up settings panel.
+    initSettings();
+
+    // 5. Load and render the lesson from ?lesson= (default to the first one).
+    const lessonId = getLessonIdFromURL() || '1-01-counting';
+
+    try {
+      await loadLesson(lessonId);
+    } catch (err) {
+      document.getElementById('lesson-container').innerHTML = `
+        <div class="lesson-empty">
+          <img class="lesson-empty-mascot" src="assets/mascot.svg" alt="" width="72" height="72">
+          <h2>${t('ui.lesson_missing_title')}</h2>
+          <p>${t('ui.lesson_missing_body')}</p>
+          <a class="btn-primary" href="index.html">${t('ui.back_to_map')}</a>
+        </div>
+      `;
+    }
+  }
+
+  main().catch(console.error);
+
+  // Register service worker for offline support.
+  if ('serviceWorker' in navigator) {
+    if (['localhost', '127.0.0.1'].includes(location.hostname)) {
+      navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
+      if (window.caches) caches.keys().then(ks => ks.forEach(k => caches.delete(k)));
+    } else {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    }
+  }
+</script>
+
+</body>
+</html>

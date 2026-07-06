@@ -1,0 +1,21 @@
+{
+  "id": "courtyard-cats",
+  "image": "assets/scenes/courtyard-cats.svg",
+  "aspect": 1.3333,
+  "object_i18n": "scene.cats.object",
+  "emoji": "🐈",
+  "count": 6,
+  "difficulty": 1,
+  "hotspots": [
+    { "x": 0.250, "y": 0.425, "r": 0.070 },
+    { "x": 0.500, "y": 0.392, "r": 0.070 },
+    { "x": 0.750, "y": 0.430, "r": 0.070 },
+    { "x": 0.319, "y": 0.692, "r": 0.070 },
+    { "x": 0.588, "y": 0.717, "r": 0.070 },
+    { "x": 0.819, "y": 0.683, "r": 0.070 }
+  ],
+  "decoys": [
+    { "x": 0.188, "y": 0.225, "r": 0.070, "i18n": "scene.cats.decoy_dog" }
+  ],
+  "_note": "count + hotspot coords are the code-owned TRUTH. Verified against assets/scenes/courtyard-cats.svg (viewBox 800x600). Swap in a Higgsfield still → re-author in tools/hotspot-author.html; never trust generated pixels for the count."
+}

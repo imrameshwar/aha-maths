@@ -1,0 +1,76 @@
+<!--
+  festival-diyas.svg — Count-Quest PLACEHOLDER scene (code-drawn stand-in).
+
+  Hand-drawn stand-in for a curated Higgsfield "Soul" still (a Diwali courtyard,
+  glowing diyas on a rangoli). Swap the still in later + re-author hotspots in
+  tools/hotspot-author.html + repoint content/scenes/festival-diyas.json.
+  HARD RULE: the count (7) + hotspot coords are code-owned TRUTH, never the pixels.
+  7 diyas, all fully visible / separated / similar scale + 1 decoy flower.
+  viewBox 800×600 (4:3); hotspots normalised to it.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img"
+     aria-label="A festival night with glowing oil lamps on a rangoli">
+  <defs>
+    <radialGradient id="fdSky" cx="0.5" cy="0.42" r="0.75">
+      <stop offset="0"   stop-color="#3A2A5E"/>
+      <stop offset="0.6" stop-color="#241A44"/>
+      <stop offset="1"   stop-color="#171030"/>
+    </radialGradient>
+    <radialGradient id="fdGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFC24D" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#FFC24D" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- one diya, centred on origin (bowl below, flame above) -->
+    <g id="fdDiya">
+      <ellipse cx="0" cy="-12" rx="18" ry="26" fill="url(#fdGlow)"/>
+      <path d="M0,-32 C8,-21 6,-10 0,-6 C-6,-10 -8,-21 0,-32 Z" fill="#FFD86B"/>
+      <path d="M0,-25 C4,-18 3,-11 0,-8 C-3,-11 -4,-18 0,-25 Z" fill="#FF7A1A"/>
+      <rect x="-1.6" y="-8" width="3.2" height="7" rx="1" fill="#5A3A1A"/>
+      <path d="M-21,0 Q0,10 21,0 Q0,-5 -21,0 Z" fill="#E0994F"/>
+      <path d="M-21,0 Q0,4 21,0 L15,17 Q0,23 -15,17 Z" fill="#B4562A"/>
+      <path d="M-15,17 Q0,23 15,17" fill="none" stroke="#7E3A18" stroke-width="2"/>
+    </g>
+
+    <!-- the decoy: a marigold flower (clearly not a diya) -->
+    <g id="fdFlower">
+      <g fill="#F59E0B">
+        <ellipse cx="0" cy="-18" rx="9" ry="14"/>
+        <ellipse cx="16" cy="-9" rx="9" ry="14" transform="rotate(52 16 -9)"/>
+        <ellipse cx="18" cy="9"  rx="9" ry="14" transform="rotate(104 18 9)"/>
+        <ellipse cx="0" cy="18"  rx="9" ry="14"/>
+        <ellipse cx="-18" cy="9" rx="9" ry="14" transform="rotate(52 -18 9)"/>
+        <ellipse cx="-16" cy="-9" rx="9" ry="14" transform="rotate(104 -16 -9)"/>
+      </g>
+      <circle cx="0" cy="0" r="10" fill="#C2410C"/>
+      <path d="M0,26 q-4,26 2,44" fill="none" stroke="#3E7C3A" stroke-width="4"/>
+    </g>
+  </defs>
+
+  <!-- night backdrop -->
+  <rect width="800" height="600" fill="url(#fdSky)"/>
+  <!-- string of tiny lights across the top -->
+  <path d="M0,70 Q400,110 800,70" fill="none" stroke="#4A3A70" stroke-width="2"/>
+  <g fill="#FFD86B">
+    <circle cx="120" cy="86" r="3"/><circle cx="260" cy="97" r="3"/><circle cx="400" cy="101" r="3"/>
+    <circle cx="540" cy="97" r="3"/><circle cx="680" cy="86" r="3"/>
+  </g>
+  <!-- rangoli: soft concentric rings near the floor -->
+  <g fill="none" stroke="#6E5AA0" opacity="0.5">
+    <ellipse cx="400" cy="470" rx="300" ry="86"/>
+    <ellipse cx="400" cy="470" rx="210" ry="60"/>
+    <ellipse cx="400" cy="470" rx="120" ry="34" stroke="#8A73C6"/>
+  </g>
+
+  <!-- THE 7 DIYAS (the countable truth — matches content/scenes/festival-diyas.json) -->
+  <use href="#fdDiya" transform="translate(170 300)"/>
+  <use href="#fdDiya" transform="translate(300 240)"/>
+  <use href="#fdDiya" transform="translate(430 210)"/>
+  <use href="#fdDiya" transform="translate(560 235)"/>
+  <use href="#fdDiya" transform="translate(680 300)"/>
+  <use href="#fdDiya" transform="translate(280 420)"/>
+  <use href="#fdDiya" transform="translate(520 430)"/>
+
+  <!-- THE DECOY -->
+  <use href="#fdFlower" transform="translate(400 490)"/>
+</svg>

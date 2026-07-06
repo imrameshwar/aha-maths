@@ -1,0 +1,99 @@
+/* styles/cinema.css — P7 cinematic prototype page. */
+
+.cinema-main { padding: 40px 0 80px; }
+
+.cinema-intro { max-width: 720px; margin: 0 auto 28px; text-align: center; }
+.cinema-kicker {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--secondary); margin-bottom: 12px;
+}
+.cinema-intro h1 { font-size: clamp(30px, 5vw, 52px); font-weight: 800; line-height: 1.08; letter-spacing: var(--tracking-tight); }
+.cinema-intro h1 span {
+  background: var(--grad-accent); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 2px 20px var(--secondary-glow));
+}
+.cinema-lede { color: var(--text-lo); font-size: 15px; line-height: 1.65; margin-top: 14px; }
+.cinema-lede b { color: var(--text-hi); }
+
+/* ── Stage ── */
+.cinema-stage {
+  position: relative; width: 100%; aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg); overflow: hidden;
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--elev-3), var(--highlight-top);
+  background: #0A0E18;
+}
+.cinema-stage canvas { display: block; width: 100%; height: 100%; }
+
+.cinema-caption {
+  position: absolute; left: 0; right: 0; bottom: 6%;
+  text-align: center; padding: 0 8%;
+  font-size: clamp(15px, 2.4vw, 24px); font-weight: 700; color: #fff;
+  text-shadow: 0 2px 18px rgba(0,0,0,0.85);
+  opacity: 0; transition: opacity 0.25s var(--ease-out); pointer-events: none;
+}
+.cinema-mood-badge {
+  position: absolute; top: 14px; left: 14px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+  color: var(--secondary);
+  background: color-mix(in srgb, var(--secondary) 14%, rgba(0,0,0,0.5));
+  border: 1px solid color-mix(in srgb, var(--secondary) 40%, transparent);
+  padding: 5px 10px; border-radius: 8px;
+}
+.cinema-mood-badge[hidden] { display: none; }
+
+/* ── Controls ── */
+.cinema-controls {
+  display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
+  justify-content: center; margin: 18px 0 8px;
+}
+.cc-group { display: flex; gap: 8px; align-items: center; }
+.cc-btn {
+  padding: 10px 20px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border-soft); background: var(--surface);
+  color: var(--text-hi); font-family: inherit; font-weight: 700; font-size: 14px;
+  cursor: pointer; transition: transform var(--dur-1) var(--ease-out), box-shadow var(--dur-2), border-color var(--dur-1);
+}
+.cc-btn:hover { border-color: color-mix(in srgb, var(--primary) 50%, var(--grid)); transform: translateY(-1px); }
+.cc-btn:active { transform: translateY(0) scale(0.98); }
+.cc-primary {
+  background: var(--grad-primary); color: var(--bg); border-color: transparent;
+  box-shadow: var(--elev-1), 0 6px 20px var(--primary-glow);
+}
+
+/* language segmented control */
+.cc-lang { padding: 4px; gap: 4px; background: var(--surface2); border: 1px solid var(--border-soft); border-radius: 10px; }
+.cc-seg {
+  padding: 7px 14px; border: none; background: transparent; color: var(--text-lo);
+  font-family: inherit; font-weight: 700; font-size: 13px; cursor: pointer; border-radius: 7px;
+  transition: color var(--dur-1), background var(--dur-1);
+}
+.cc-seg.is-active { background: var(--surface); color: var(--primary); box-shadow: var(--elev-1), var(--highlight-top); }
+
+/* layer toggles */
+.cc-layers { flex-wrap: wrap; gap: 6px; }
+.cc-toggle {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 12px; border-radius: 9px;
+  border: 1px solid var(--border-soft); background: var(--surface);
+  font-size: 13px; font-weight: 600; cursor: pointer; user-select: none;
+}
+.cc-toggle i { color: var(--text-lo); font-style: normal; font-size: 11px; }
+.cc-toggle input { accent-color: var(--primary); width: 15px; height: 15px; cursor: pointer; }
+
+/* ── Explainer ── */
+.cinema-note { max-width: 900px; margin: 40px auto 0; }
+.cinema-note h2 { font-size: 20px; font-weight: 800; text-align: center; margin-bottom: 20px; }
+.note-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 720px) { .note-grid { grid-template-columns: 1fr; } }
+.note-card {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg); padding: 20px;
+  box-shadow: var(--elev-1), var(--highlight-top);
+}
+.note-num { font-family: var(--font-mono); font-weight: 800; font-size: 20px; color: var(--primary); }
+.note-card b { display: block; margin: 8px 0 6px; font-size: 15px; }
+.note-card p { font-size: 13px; color: var(--text-lo); line-height: 1.55; }
+.note-card em { color: var(--text-hi); font-style: normal; font-weight: 600; }
+.note-foot { text-align: center; color: var(--text-lo); font-size: 13px; margin-top: 20px; }
+.note-foot code { font-family: var(--font-mono); color: var(--primary); font-size: 12px; }

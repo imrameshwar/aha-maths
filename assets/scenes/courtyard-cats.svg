@@ -1,0 +1,76 @@
+<!--
+  courtyard-cats.svg — Count-Quest PLACEHOLDER scene (code-drawn stand-in).
+
+  Same role as mango-tree.svg: the "AI mood" layer, drawn by hand so the
+  tap-and-count pipeline runs end-to-end TODAY. Swap for a curated Higgsfield
+  "Soul" still (a warm Rajasthani courtyard with cats) later, then re-author the
+  hotspots in tools/hotspot-author.html and repoint content/scenes/courtyard-cats.json.
+  HARD RULE: the count (6) + hotspot coords are code-owned TRUTH, never the pixels.
+  6 cats, all fully visible / separated / similar scale + 1 decoy dog.
+  viewBox 800×600 (4:3); hotspots normalised to it.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img"
+     aria-label="A warm courtyard with cats resting on the floor">
+  <defs>
+    <linearGradient id="ccWall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F6E4CB"/>
+      <stop offset="1" stop-color="#EBCBA4"/>
+    </linearGradient>
+    <linearGradient id="ccFloor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C98A55"/>
+      <stop offset="1" stop-color="#B0703F"/>
+    </linearGradient>
+
+    <!-- one cat, centred on origin; body+head use currentColor so each <use> recolours -->
+    <g id="ccCat">
+      <path d="M22,20 q30,6 27,-22 q-2,-14 -13,-16" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+      <ellipse cx="0" cy="18" rx="27" ry="24" fill="currentColor"/>
+      <circle cx="0" cy="-16" r="20" fill="currentColor"/>
+      <path d="M-17,-27 l-6,-17 l17,8 Z" fill="currentColor"/>
+      <path d="M17,-27 l6,-17 l-17,8 Z" fill="currentColor"/>
+      <path d="M-13,-29 l-3,-9 l8,4 Z" fill="#F0A9B4"/>
+      <path d="M13,-29 l3,-9 l-8,4 Z" fill="#F0A9B4"/>
+      <circle cx="-7" cy="-17" r="3" fill="#20303A"/>
+      <circle cx="7" cy="-17" r="3" fill="#20303A"/>
+      <path d="M-3,-9 l3,4 l3,-4 Z" fill="#E0879A"/>
+      <path d="M-6,-7 l-16,-3 M-6,-5 l-16,4 M6,-7 l16,-3 M6,-5 l16,4"
+            stroke="#FBF3E6" stroke-width="1.4" opacity="0.7"/>
+    </g>
+
+    <!-- the decoy: a dog (floppy ears, long snout — clearly not a cat) -->
+    <g id="ccDog">
+      <path d="M-24,20 q-26,4 -24,-20" fill="none" stroke="#A9744F" stroke-width="8" stroke-linecap="round"/>
+      <ellipse cx="0" cy="18" rx="30" ry="23" fill="#B98A5E"/>
+      <circle cx="0" cy="-14" r="20" fill="#B98A5E"/>
+      <ellipse cx="-19" cy="-14" rx="8" ry="17" fill="#8A6440"/>
+      <ellipse cx="19" cy="-14" rx="8" ry="17" fill="#8A6440"/>
+      <ellipse cx="0" cy="-4" rx="11" ry="9" fill="#EAD6B7"/>
+      <ellipse cx="0" cy="-9" rx="4" ry="3" fill="#2B2016"/>
+      <circle cx="-8" cy="-17" r="2.6" fill="#2B2016"/>
+      <circle cx="8" cy="-17" r="2.6" fill="#2B2016"/>
+    </g>
+  </defs>
+
+  <!-- backdrop: wall + floor -->
+  <rect width="800" height="600" fill="url(#ccWall)"/>
+  <path d="M0,360 L800,360 L800,600 L0,600 Z" fill="url(#ccFloor)"/>
+  <!-- soft shadow line where wall meets floor -->
+  <rect y="356" width="800" height="6" fill="#8F5A31" opacity="0.35"/>
+  <!-- an arched window on the wall (obviously not a cat) -->
+  <path d="M470,90 a90,90 0 0 1 180,0 L650,250 L470,250 Z" fill="#C9A878" opacity="0.55"/>
+  <path d="M560,90 L560,250 M470,170 L650,170" stroke="#8F6C45" stroke-width="6" opacity="0.55"/>
+  <!-- a potted plant in the corner (decor, clearly not a cat) -->
+  <path d="M96,300 l16,44 l-40,0 Z" fill="#9C5B33"/>
+  <path d="M92,300 q-14,-40 6,-58 q10,26 -6,58 M92,300 q14,-40 30,-50 q-6,30 -30,50" fill="#4E9A50"/>
+
+  <!-- THE 6 CATS (the countable truth — matches content/scenes/courtyard-cats.json) -->
+  <use href="#ccCat" transform="translate(200 255) rotate(-4)" style="color:#D89A5A"/>
+  <use href="#ccCat" transform="translate(400 235)"           style="color:#98A2AD"/>
+  <use href="#ccCat" transform="translate(600 258) rotate(5)" style="color:#A9744F"/>
+  <use href="#ccCat" transform="translate(255 415) rotate(3)" style="color:#E1C892"/>
+  <use href="#ccCat" transform="translate(470 430)"           style="color:#6F7883"/>
+  <use href="#ccCat" transform="translate(655 410) rotate(-5)" style="color:#E6E9ED"/>
+
+  <!-- THE DECOY -->
+  <use href="#ccDog" transform="translate(150 135)"/>
+</svg>

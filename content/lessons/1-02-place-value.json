@@ -1,0 +1,35 @@
+{
+  "id": "1-02-place-value",
+  "world": "numbers",
+  "world_order": 1,
+  "lesson_order": 2,
+  "tiers": ["beginner", "explorer", "deep"],
+  "default_tier": "beginner",
+  "visualizer": "place-value",
+  "controls": {
+    "count": { "type": "range", "min": 0, "max": 19, "default": 7 }
+  },
+  "i18n": {
+    "title":              "lesson.place_value.title",
+    "subtitle":           "lesson.place_value.subtitle",
+    "hook_title":         "lesson.place_value.hook.title",
+    "hook_body":          "lesson.place_value.hook.body",
+    "play_title":         "lesson.place_value.play.title",
+    "play_instruction":   "lesson.place_value.play.instruction",
+    "aha_title":          "lesson.place_value.aha.title",
+    "aha_body":           "lesson.place_value.aha.body",
+    "check_title":        "lesson.place_value.check.title",
+    "connect_body":       "lesson.place_value.connect.body",
+    "connect_next_label": "lesson.place_value.connect.next_label"
+  },
+  "checks": [
+    {
+      "type": "tap-count",
+      "count": 1,
+      "i18n": { "prompt": "lesson.place_value.check_q1.prompt" }
+    }
+  ],
+  "watch_url": null,
+  "next": "1-03-number-line",
+  "prev": "1-01-counting"
+}

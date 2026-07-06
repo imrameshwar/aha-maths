@@ -1,0 +1,35 @@
+{
+  "id": "1-03-number-line",
+  "world": "numbers",
+  "world_order": 1,
+  "lesson_order": 3,
+  "tiers": ["beginner", "explorer", "deep"],
+  "default_tier": "beginner",
+  "visualizer": "number-line",
+  "controls": {
+    "position": { "type": "range", "min": -10, "max": 15, "default": 5 }
+  },
+  "i18n": {
+    "title":              "lesson.number_line.title",
+    "subtitle":           "lesson.number_line.subtitle",
+    "hook_title":         "lesson.number_line.hook.title",
+    "hook_body":          "lesson.number_line.hook.body",
+    "play_title":         "lesson.number_line.play.title",
+    "play_instruction":   "lesson.number_line.play.instruction",
+    "aha_title":          "lesson.number_line.aha.title",
+    "aha_body":           "lesson.number_line.aha.body",
+    "check_title":        "lesson.number_line.check.title",
+    "connect_body":       "lesson.number_line.connect.body",
+    "connect_next_label": "lesson.number_line.connect.next_label"
+  },
+  "checks": [
+    {
+      "type": "tap-count",
+      "count": 5,
+      "i18n": { "prompt": "lesson.number_line.check_q1.prompt" }
+    }
+  ],
+  "watch_url": null,
+  "next": "1-04-negatives",
+  "prev": "1-02-place-value"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "4-04-circle-area",
+  "world": "shapes",
+  "world_order": 4,
+  "lesson_order": 4,
+  "tiers": ["beginner", "explorer", "deep"],
+  "default_tier": "beginner",
+  "visualizer": "area-of-circle",
+  "i18n": {
+    "title":            "lesson.circle_area.title",
+    "subtitle":         "lesson.circle_area.subtitle",
+    "hook_title":       "lesson.circle_area.hook.title",
+    "hook_body":        "lesson.circle_area.hook.body",
+    "play_title":       "lesson.circle_area.play.title",
+    "play_instruction": "lesson.circle_area.play.instruction",
+    "aha_title":        "lesson.circle_area.aha.title",
+    "aha_body":         "lesson.circle_area.aha.body",
+    "check_title":      "lesson.circle_area.check.title",
+    "connect_body":     "lesson.circle_area.connect.body",
+    "connect_next_label": "lesson.circle_area.connect.next_label"
+  },
+  "checks": [
+    {
+      "type": "tap-count",
+      "count": 3,
+      "i18n": { "prompt": "lesson.circle_area.check_q1.prompt" }
+    }
+  ],
+  "watch_url": null,
+  "next": "4-05-symmetry",
+  "prev": "4-03-area"
+}

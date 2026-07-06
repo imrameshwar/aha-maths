@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Count-Quest · Hotspot Author</title>
+<!--
+  DEV-ONLY authoring tool (not part of the shipped site — excluded from sw.js
+  precache + sitemap). This is the "curate + author truth" step of the
+  Count-Quest pipeline: load a scene image (a Higgsfield still, or the
+  placeholder SVG), click each COUNTABLE object to drop a hotspot, mark decoys,
+  tune each radius, then export content/scenes/<id>.json. The exported count +
+  coords become the code-owned truth the runtime trusts — never the pixels.
+-->
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.5 system-ui, sans-serif; background: #0B0F1A; color: #E2E8F0; }
+  header { padding: 14px 20px; border-bottom: 1px solid #222B3D; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  header h1 { font-size: 16px; margin: 0; color: #fff; }
+  header .hint { color: #94A3B8; font-size: 12px; }
+  .wrap { display: grid; grid-template-columns: 1fr 340px; gap: 0; min-height: calc(100vh - 53px); }
+  .stage-col { padding: 20px; overflow: auto; }
+  .stage { position: relative; display: inline-block; box-shadow: 0 8px 30px rgba(0,0,0,.4); border-radius: 8px; overflow: hidden; }
+  canvas { display: block; cursor: crosshair; }
+  .panel { border-left: 1px solid #222B3D; padding: 18px; background: #0E1422; display: flex; flex-direction: column; gap: 14px; }
+  .panel h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: #94A3B8; margin: 4px 0 0; }
+  label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 4px; }
+  input[type=text], input[type=number] { width: 100%; padding: 7px 9px; background: #141A2A; border: 1px solid #2A3550; border-radius: 6px; color: #fff; font: inherit; }
+  input[type=range] { width: 100%; }
+  .row { display: flex; gap: 8px; }
+  .row > * { flex: 1; }
+  button { padding: 8px 12px; border: 1px solid #2A3550; background: #1C2438; color: #fff; border-radius: 6px; cursor: pointer; font: inherit; }
+  button:hover { border-color: #22D3EE; }
+  button.on { background: #22D3EE; color: #08111A; border-color: #22D3EE; font-weight: 700; }
+  button.danger:hover { border-color: #F87171; }
+  .list { display: flex; flex-direction: column; gap: 4px; max-height: 180px; overflow: auto; }
+  .item { display: flex; align-items: center; gap: 8px; padding: 5px 8px; background: #141A2A; border-radius: 6px; font-size: 12px; cursor: pointer; }
+  .item.sel { outline: 1px solid #22D3EE; }
+  .item .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+  .item .x { margin-left: auto; color: #94A3B8; cursor: pointer; padding: 0 4px; }
+  .item .x:hover { color: #F87171; }
+  textarea { width: 100%; height: 150px; background: #0B0F1A; border: 1px solid #2A3550; border-radius: 6px; color: #7CE0EE; font: 12px/1.45 ui-monospace, monospace; padding: 8px; resize: vertical; }
+  .count-badge { font-size: 28px; font-weight: 800; color: #22D3EE; font-family: ui-monospace, monospace; }
+  .swatch-h { background: #34D399; } .swatch-d { background: #FBBF24; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Count-Quest · Hotspot Author</h1>
+  <span class="hint">Click empty space to drop a point · click a point to select · drag to move · slider sets radius · Del removes</span>
+</header>
+
+<div class="wrap">
+  <div class="stage-col">
+    <div class="stage"><canvas id="cv" width="720" height="540"></canvas></div>
+  </div>
+
+  <div class="panel">
+    <h2>Image</h2>
+    <div class="row">
+      <input type="text" id="imgpath" value="../assets/scenes/mango-tree.svg">
+      <button id="loadpath" style="flex:0 0 auto">Load</button>
+    </div>
+    <div class="row"><input type="file" id="imgfile" accept="image/*" style="font-size:12px"></div>
+
+    <h2>Add mode</h2>
+    <div class="row">
+      <button id="mode-h" class="on"><span style="color:#34D399">●</span> Object</button>
+      <button id="mode-d"><span style="color:#FBBF24">●</span> Decoy</button>
+    </div>
+
+    <h2>Selected point</h2>
+    <label>Radius <span id="rval">0.075</span></label>
+    <input type="range" id="radius" min="0.02" max="0.15" step="0.001" value="0.075" disabled>
+    <button id="del" class="danger" disabled>Delete selected</button>
+    <div class="list" id="list"></div>
+
+    <h2>Scene metadata</h2>
+    <div class="row">
+      <div><label>id</label><input type="text" id="sid" value="mango-tree"></div>
+      <div><label>count</label><span class="count-badge" id="count">0</span></div>
+    </div>
+    <label>object_i18n</label><input type="text" id="objkey" value="scene.mango.object">
+    <label>decoy i18n key (applied to decoys)</label><input type="text" id="decoykey" value="scene.mango.decoy_bird">
+
+    <h2>Export</h2>
+    <textarea id="out" readonly></textarea>
+    <div class="row">
+      <button id="copy">Copy JSON</button>
+      <button id="download">Download</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const cv = document.getElementById('cv'), ctx = cv.getContext('2d');
+let img = null, imgAspect = 4/3;
+let points = [];              // {type:'h'|'d', x, y, r}
+let sel = -1, mode = 'h', dragging = false;
+
+function loadImage(src) {
+  const im = new Image();
+  im.crossOrigin = 'anonymous';
+  im.onload = () => {
+    img = im;
+    // SVGs with only a viewBox can report 0 intrinsic size — fall back to 4:3.
+    imgAspect = (im.naturalWidth && im.naturalHeight) ? im.naturalWidth / im.naturalHeight : 4 / 3;
+    cv.width = 720; cv.height = Math.round(720 / imgAspect);
+    draw(); sync();
+  };
+  im.onerror = () => alert('Could not load image: ' + src);
+  im.src = src;
+}
+document.getElementById('loadpath').onclick = () => loadImage(document.getElementById('imgpath').value.trim());
+document.getElementById('imgfile').onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  const url = URL.createObjectURL(f); loadImage(url);
+  document.getElementById('imgpath').value = 'assets/scenes/' + f.name;
+};
+
+document.getElementById('mode-h').onclick = () => setMode('h');
+document.getElementById('mode-d').onclick = () => setMode('d');
+function setMode(m) {
+  mode = m;
+  document.getElementById('mode-h').classList.toggle('on', m === 'h');
+  document.getElementById('mode-d').classList.toggle('on', m === 'd');
+}
+
+function pt(e) {
+  const r = cv.getBoundingClientRect();
+  return { x: (e.clientX - r.left) / cv.width, y: (e.clientY - r.top) / cv.height };
+}
+function hit(p) {
+  for (let i = points.length - 1; i >= 0; i--) {
+    const q = points[i], dx = (p.x - q.x) * cv.width, dy = (p.y - q.y) * cv.height;
+    if (Math.hypot(dx, dy) <= q.r * cv.width) return i;
+  }
+  return -1;
+}
+
+cv.addEventListener('mousedown', e => {
+  const p = pt(e), h = hit(p);
+  if (h >= 0) { select(h); dragging = true; }
+  else { points.push({ type: mode, x: p.x, y: p.y, r: parseFloat(radius.value) }); select(points.length - 1); }
+  draw(); sync();
+});
+cv.addEventListener('mousemove', e => {
+  if (!dragging || sel < 0) return;
+  const p = pt(e); points[sel].x = p.x; points[sel].y = p.y; draw(); sync();
+});
+window.addEventListener('mouseup', () => dragging = false);
+window.addEventListener('keydown', e => { if ((e.key === 'Delete' || e.key === 'Backspace') && sel >= 0 && e.target.tagName !== 'INPUT') delSel(); });
+
+const radius = document.getElementById('radius');
+radius.oninput = () => {
+  document.getElementById('rval').textContent = (+radius.value).toFixed(3);
+  if (sel >= 0) { points[sel].r = parseFloat(radius.value); draw(); sync(); }
+};
+document.getElementById('del').onclick = delSel;
+function delSel() { if (sel < 0) return; points.splice(sel, 1); select(-1); draw(); sync(); }
+
+function select(i) {
+  sel = i;
+  radius.disabled = i < 0; document.getElementById('del').disabled = i < 0;
+  if (i >= 0) { radius.value = points[i].r; document.getElementById('rval').textContent = points[i].r.toFixed(3); }
+  renderList();
+}
+
+function draw() {
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  if (img) ctx.drawImage(img, 0, 0, cv.width, cv.height);
+  points.forEach((q, i) => {
+    ctx.beginPath();
+    ctx.arc(q.x * cv.width, q.y * cv.height, q.r * cv.width, 0, 7);
+    ctx.lineWidth = i === sel ? 4 : 2.5;
+    ctx.strokeStyle = q.type === 'h' ? '#34D399' : '#FBBF24';
+    ctx.stroke();
+    ctx.fillStyle = q.type === 'h' ? 'rgba(52,211,153,.14)' : 'rgba(251,191,36,.14)';
+    ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 13px ui-monospace, monospace';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    const n = q.type === 'h' ? points.filter((z, j) => z.type === 'h' && j <= i).length : '×';
+    ctx.fillText(n, q.x * cv.width, q.y * cv.height);
+  });
+}
+
+function renderList() {
+  const el = document.getElementById('list'); el.innerHTML = '';
+  points.forEach((q, i) => {
+    const d = document.createElement('div'); d.className = 'item' + (i === sel ? ' sel' : '');
+    d.innerHTML = `<span class="dot ${q.type === 'h' ? 'swatch-h' : 'swatch-d'}"></span>` +
+      `${q.type === 'h' ? 'object' : 'decoy'} · x${q.x.toFixed(3)} y${q.y.toFixed(3)} r${q.r.toFixed(3)}` +
+      `<span class="x" data-i="${i}">✕</span>`;
+    d.onclick = ev => { if (ev.target.classList.contains('x')) { points.splice(i, 1); select(-1); } else select(i); draw(); sync(); };
+    el.appendChild(d);
+  });
+}
+
+function sync() {
+  const hs = points.filter(p => p.type === 'h');
+  const ds = points.filter(p => p.type === 'd');
+  document.getElementById('count').textContent = hs.length;
+  const obj = {
+    id: document.getElementById('sid').value.trim(),
+    image: document.getElementById('imgpath').value.trim(),
+    aspect: +imgAspect.toFixed(4),
+    object_i18n: document.getElementById('objkey').value.trim(),
+    count: hs.length,
+    difficulty: 1,
+    hotspots: hs.map(p => ({ x: +p.x.toFixed(3), y: +p.y.toFixed(3), r: +p.r.toFixed(3) })),
+    decoys: ds.map(p => ({ x: +p.x.toFixed(3), y: +p.y.toFixed(3), r: +p.r.toFixed(3), i18n: document.getElementById('decoykey').value.trim() }))
+  };
+  document.getElementById('out').value = JSON.stringify(obj, null, 2);
+  renderList();
+}
+['sid', 'objkey', 'decoykey', 'imgpath'].forEach(id => document.getElementById(id).oninput = sync);
+
+document.getElementById('copy').onclick = () => { navigator.clipboard.writeText(document.getElementById('out').value); };
+document.getElementById('download').onclick = () => {
+  const blob = new Blob([document.getElementById('out').value], { type: 'application/json' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = (document.getElementById('sid').value.trim() || 'scene') + '.json'; a.click();
+};
+
+// Boot with the placeholder scene so the tool opens ready-to-use.
+loadImage(document.getElementById('imgpath').value);
+sync();
+</script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Story of Numbers — an interactive journey | Aha Maths</title>
+  <meta name="description" content="Play through the invention of numbers: match sheep to stones, drag the digit that becomes 200, invent zero with your own hand. An interactive, hands-on story of how humanity built numbers.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="The Story of Numbers — an interactive journey | Aha Maths">
+  <meta property="og:description" content="Match sheep to stones, slide the digit that becomes 200, drag zero into place. Play the invention of numbers.">
+  <meta property="og:url"         content="https://ahamaths.com/numbers-story.html">
+
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="The Story of Numbers — an interactive journey">
+  <meta name="twitter:description" content="A hands-on, scene-by-scene story of how humanity invented numbers.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "The Story of Numbers — Interactive Journey",
+    "description": "A hands-on, scene-by-scene interactive story of how humanity invented numbers, from a shepherd's pebble to zero and beyond.",
+    "educationalLevel": "All ages",
+    "learningResourceType": "Interactive activity",
+    "interactivityType": "active",
+    "inLanguage": ["en"],
+    "url": "https://ahamaths.com/numbers-story.html",
+    "author": { "@type": "Person", "name": "Aha Maths", "url": "https://ahamaths.com" }
+  }
+  </script>
+
+  <link rel="canonical" href="https://ahamaths.com/numbers-story.html">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/journey.css">
+
+  <script src="lib/p5.min.js"></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- ── Header ── -->
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="index.html">
+      <div class="logo-mark">AM</div>
+      Aha Maths
+    </a>
+    <nav class="site-nav">
+      <div class="lang-toggle" id="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang="en" class="is-on">EN</button>
+        <button type="button" data-lang="hi">हिं</button>
+      </div>
+      <a href="learn.html?lesson=1-01-counting" class="site-nav-learn">📚 Learn</a>
+      <a class="handle-link" href="https://www.youtube.com/@AhaMathsOfficial" target="_blank" rel="noopener">@AhaMathsOfficial ↗</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── Intro ── -->
+<div class="container" id="main-content">
+  <div class="journey-intro">
+    <p class="breadcrumb"><a href="index.html">← Home</a></p>
+    <p class="journey-eyebrow" id="pt-eyebrow">✨ Interactive Story · Ganit ki Kahani</p>
+    <h1 id="pt-h1">The Story of <span>Numbers</span></h1>
+    <p class="lede" id="pt-lede">
+      Don't just watch — <b>play</b> the invention of numbers. Match sheep to stones,
+      slide the digit that becomes 200, drag zero into place with your own hand.
+    </p>
+    <span class="journey-hint" id="pt-hint">🔊 Tap “Listen” to hear each scene · ← → arrow keys to move</span>
+  </div>
+</div>
+
+<!-- ── The interactive journey ── -->
+<div class="container">
+  <div class="journey-card">
+    <!-- Era timeline ribbon (nodes injected by the boot script) -->
+    <div class="jc-era" id="jc-era" role="group" aria-label="Story timeline — jump to a scene">
+      <span class="jc-era-label" id="jc-era-label" aria-hidden="true"></span>
+      <div class="jc-era-row">
+        <span class="jc-era-cap" aria-hidden="true">🦴</span>
+        <div class="jc-era-track" id="jc-era-track">
+          <div class="jc-era-line" aria-hidden="true"></div>
+          <div class="jc-era-fill" id="jc-era-fill" aria-hidden="true"></div>
+        </div>
+        <span class="jc-era-cap" aria-hidden="true">💻</span>
+      </div>
+    </div>
+
+    <div class="jc-head">
+      <span class="jc-num" id="jc-num">01 / 12</span>
+      <div class="jc-titles">
+        <span class="jc-kicker" id="jc-kicker">Where it all begins</span>
+        <span class="jc-title"  id="jc-title">The First Question</span>
+      </div>
+      <button class="jc-sound" id="jc-sound" type="button" aria-label="Sound">🔊</button>
+    </div>
+
+    <div class="jc-stage" id="jc-stage">
+      <div class="jc-discover" id="jc-discover" hidden style="display:none">✓ You found it</div>
+      <div class="jc-start" id="jc-start">
+        <div class="jc-start-inner">
+          <div class="jc-start-icon">🦉</div>
+          <p class="jc-start-text" id="jc-start-text">Read, listen, and play your way through the invention of numbers.</p>
+          <input class="jc-name-input" id="jc-name-input" type="text" maxlength="16"
+                 placeholder="What should we call you? (optional)" aria-label="Your name (optional)"
+                 autocomplete="off" spellcheck="false">
+          <button class="jc-start-btn" id="jc-start-btn" type="button">▶ Begin the story</button>
+          <button class="jc-start-over" id="jc-start-over" type="button" hidden>↺ Start from the beginning</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="jc-controls" id="jc-controls" hidden></div>
+
+    <div class="jc-dialogue" id="jc-dialogue" aria-live="polite"></div>
+  </div>
+
+  <!-- Nav (quiet — the in-bubble Continue is the story's primary action) -->
+  <div class="jc-nav">
+    <button class="jc-nav-btn" id="jc-prev" disabled>← Back</button>
+    <button class="jc-nav-btn jc-next" id="jc-next">Next →</button>
+  </div>
+</div>
+
+<!-- ── Also available: cinematic version ── -->
+<div class="container">
+  <div class="journey-intro" style="padding-top:0">
+    <p class="lede" id="pt-cinematic" style="font-size:14px">
+      Prefer to just sit back? Watch the <a href="story-of-numbers.html">cinematic version →</a>
+    </p>
+  </div>
+</div>
+
+<!-- ── Email capture ── -->
+<section class="container">
+  <div class="email-section">
+    <h2 id="pt-email-h">More interactive stories, weekly</h2>
+    <p id="pt-email-p">New hands-on maths stories and simulations drop weekly. No spam — just the aha.</p>
+    <form class="email-form" id="email-form" action="https://formspree.io/f/REPLACE_WITH_FORM_ID" method="POST">
+      <input type="hidden" name="_source" value="numbers-story">
+      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+      <button type="submit" id="pt-email-btn">Notify me</button>
+    </form>
+    <p class="email-note">Unsubscribe any time.</p>
+    <p class="form-success" id="form-success">✓ You're in! Watch for the next aha.</p>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="site-footer">
+  <div class="container">
+    <p>
+      <a href="index.html">← Home</a> &nbsp;·&nbsp;
+      <a href="https://www.youtube.com/@AhaMathsOfficial" target="_blank" rel="noopener">YouTube @AhaMathsOfficial</a> &nbsp;·&nbsp;
+      Made with p5.js
+    </p>
+  </div>
+</footer>
+
+<!-- ── Completion overlay ── -->
+<div class="jc-complete" id="jc-complete" hidden style="display:none">
+  <div class="cc-kicker">0 → 9</div>
+  <h2 id="pt-cc-h">You reached the present.</h2>
+  <p id="pt-cc-p">From a shepherd's pebble to the language of science — you just replayed the greatest idea in history. It all began with one question: <em>“How many?”</em></p>
+  <div class="cc-mascot" id="jc-cc-mascot"></div>
+  <div class="cc-badges" id="jc-badges" aria-label="Badges earned"></div>
+  <div class="cc-actions">
+    <button class="cc-btn primary" id="cc-share">✨ Share your journey</button>
+    <button class="cc-btn" id="cc-restart">↺ Start over</button>
+    <a class="cc-btn" id="pt-cc-learn" href="learn.html?lesson=1-01-counting">📚 Learn numbers →</a>
+    <button class="cc-btn" id="cc-close">Keep exploring</button>
+  </div>
+</div>
+
+<!-- ── Boot ── -->
+<script type="module">
+  await document.fonts.load('700 48px "Plus Jakarta Sans"');
+  await document.fonts.load('400 48px "Plus Jakarta Sans"');
+  await document.fonts.load('bold 48px "JetBrains Mono"');
+  await document.fonts.load('700 24px "Mukta"');
+  await document.fonts.ready;
+
+  const { initJourney, SCENES } = await import('./story/numbers-interactive.js');
+
+  // ── Page-level bilingual copy (the journey engine handles the scene copy) ──
+  const PT = {
+    eyebrow:   { en: '✨ Interactive Story · Ganit ki Kahani', hi: '✨ इंटरैक्टिव कहानी · गणित की कहानी' },
+    h1:        { en: 'The Story of <span>Numbers</span>', hi: 'संख्याओं की <span>कहानी</span>' },
+    lede:      { en: "Don't just watch — <b>play</b> the invention of numbers. Match sheep to stones, slide the digit that becomes 200, drag zero into place with your own hand.",
+                 hi: 'सिर्फ़ देखिए मत — संख्याओं के आविष्कार को <b>खेलिए</b>। भेड़ों को पत्थरों से मिलाइए, वह अंक खिसकाइए जो 200 बनता है, और अपने हाथ से शून्य को उसकी जगह रखिए।' },
+    hint:      { en: '📖 Read · 🔊 listen · ✋ play each scene · ← → arrow keys to move', hi: '📖 पढ़िए · 🔊 सुनिए · ✋ हर दृश्य खेलिए · ← → तीर कुंजियों से जाइए' },
+    startText: { en: 'Read, listen, and play your way through the invention of numbers.', hi: 'पढ़ते, सुनते और खेलते हुए संख्याओं के आविष्कार की सैर कीजिए।' },
+    startBtn:  { en: '▶ Begin the story', hi: '▶ कहानी शुरू करें' },
+    cinematic: { en: 'Prefer to just sit back? Watch the <a href="story-of-numbers.html">cinematic version →</a>', hi: 'सिर्फ़ आराम से देखना चाहते हैं? <a href="story-of-numbers.html">सिनेमाई संस्करण देखिए →</a>' },
+    emailH:    { en: 'More interactive stories, weekly', hi: 'हर हफ़्ते और इंटरैक्टिव कहानियाँ' },
+    emailP:    { en: 'New hands-on maths stories and simulations drop weekly. No spam — just the aha.', hi: 'हर हफ़्ते नई हैंड्स-ऑन गणित कहानियाँ और सिमुलेशन। कोई स्पैम नहीं — बस वो “अहा” पल।' },
+    emailBtn:  { en: 'Notify me', hi: 'मुझे बताएँ' },
+    ccH:       { en: 'You reached the present.', hi: 'आप आज तक पहुँच गए।' },
+    ccP:       { en: 'From a shepherd\'s pebble to the language of science — you just replayed the greatest idea in history. It all began with one question: <em>“How many?”</em>',
+                 hi: 'गड़रिये के कंकड़ से विज्ञान की भाषा तक — आपने अभी इतिहास का सबसे बड़ा विचार दोबारा जिया। यह सब एक सवाल से शुरू हुआ: <em>“कितने?”</em>' },
+    ccLearn:   { en: '📚 Learn numbers →', hi: '📚 संख्याएँ सीखें →' },
+  };
+  const setText = (id, key, lang) => { const el = document.getElementById(id); if (el) el.innerHTML = PT[key][lang] || PT[key].en; };
+  function applyPageLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    setText('pt-eyebrow', 'eyebrow', lang);
+    setText('pt-h1', 'h1', lang);
+    setText('pt-lede', 'lede', lang);
+    setText('pt-hint', 'hint', lang);
+    setText('pt-cinematic', 'cinematic', lang);
+    setText('pt-email-h', 'emailH', lang);
+    setText('pt-email-p', 'emailP', lang);
+    setText('pt-email-btn', 'emailBtn', lang);
+    setText('pt-cc-h', 'ccH', lang);
+    setText('pt-cc-p', 'ccP', lang);
+    setText('pt-cc-learn', 'ccLearn', lang);
+    // start overlay text/button + completion mascot/badges are owned by the journey engine
+    document.querySelectorAll('#lang-toggle button').forEach(b => b.classList.toggle('is-on', b.dataset.lang === lang));
+  }
+
+  const startLang = localStorage.getItem('am-lang') === 'hi' ? 'hi' : 'en';
+
+  // ── Era timeline: a short label per scene so the player feels time passing ──
+  const ERAS = {
+    'first-question': { en: 'Before numbers',   hi: 'संख्याओं से पहले' },
+    'shepherd':       { en: 'Dawn of counting', hi: 'गिनती की भोर' },
+    'body':           { en: 'Marks on bone',    hi: 'हड्डी पर निशान' },
+    'cities':         { en: 'The first cities',  hi: 'पहले शहर' },
+    'symbols':        { en: 'Age of Rome',       hi: 'रोम का युग' },
+    'place-value':    { en: 'The great idea',    hi: 'महान विचार' },
+    'nothing':        { en: 'Ancient India',     hi: 'प्राचीन भारत' },
+    'zero-power':     { en: 'Zero spreads',      hi: 'शून्य फैलता है' },
+    'ten-symbols':    { en: 'India → the world', hi: 'भारत → दुनिया' },
+    'beyond':         { en: 'New numbers',       hi: 'नई संख्याएँ' },
+    'scales':         { en: 'Age of science',    hi: 'विज्ञान का युग' },
+    'finale':         { en: 'Today',             hi: 'आज' },
+  };
+  const eraLabel = document.getElementById('jc-era-label');
+  const eraFill  = document.getElementById('jc-era-fill');
+
+  // Build the timeline nodes (they double as the engine's scene "dots").
+  const track = document.getElementById('jc-era-track');
+  const dots = SCENES.map((s, i) => {
+    const b = document.createElement('button');
+    b.className = 'jc-node';
+    b.style.left = `${(i / (SCENES.length - 1)) * 100}%`;
+    b.title = `${i + 1}. ${s.title}`;
+    b.setAttribute('aria-label', `Scene ${i + 1}: ${s.title}`);
+    track.appendChild(b);
+    return b;
+  });
+
+  // Theater mode: the story takes over the viewport once it begins.
+  let curLang = startLang, curIdx = 0;
+  function updateEra(idx) {
+    curIdx = idx;
+    const era = ERAS[SCENES[idx].id];
+    if (eraLabel && era) eraLabel.textContent = era[curLang] || era.en;
+    if (eraFill) eraFill.style.width = `${(idx / (SCENES.length - 1)) * 100}%`;
+  }
+  function enterTheater() {
+    if (document.body.classList.contains('theater')) return;
+    document.body.classList.add('theater');
+    document.querySelector('.journey-card')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  const journey = initJourney({
+    onScene: (idx) => updateEra(idx),
+    onBegin: enterTheater,
+    els: {
+      stage:         document.getElementById('jc-stage'),
+      sceneNum:      document.getElementById('jc-num'),
+      sceneTitle:    document.getElementById('jc-title'),
+      sceneKicker:   document.getElementById('jc-kicker'),
+      dialogue:      document.getElementById('jc-dialogue'),
+      controls:      document.getElementById('jc-controls'),
+      soundBtn:      document.getElementById('jc-sound'),
+      startOverlay:  document.getElementById('jc-start'),
+      startBtn:      document.getElementById('jc-start-btn'),
+      startOver:     document.getElementById('jc-start-over'),
+      startText:     document.getElementById('jc-start-text'),
+      nameInput:     document.getElementById('jc-name-input'),
+      prevBtn:       document.getElementById('jc-prev'),
+      nextBtn:       document.getElementById('jc-next'),
+      dots,
+      discoverBadge: document.getElementById('jc-discover'),
+      complete:      document.getElementById('jc-complete'),
+      badges:        document.getElementById('jc-badges'),
+      ccMascot:      document.getElementById('jc-cc-mascot'),
+    },
+    lang: startLang,
+  });
+
+  // Apply initial page language + wire the EN/हिं toggle.
+  applyPageLang(startLang);
+  document.getElementById('lang-toggle').addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-lang]');
+    if (!btn) return;
+    const lang = btn.dataset.lang;
+    curLang = lang;
+    journey.setLang(lang);   // switches scene copy + narration voice, no remount
+    applyPageLang(lang);
+    updateEra(curIdx);       // re-label the timeline in the new language
+  });
+
+  // Auto-hide the site header while reading (theater mode only), so the stage
+  // and dialogue share the viewport. Reappears the moment you scroll up.
+  const header = document.querySelector('.site-header');
+  let lastY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    if (!document.body.classList.contains('theater')) { header.classList.remove('is-hidden'); return; }
+    const y = window.scrollY;
+    if (y > lastY && y > 90) header.classList.add('is-hidden');
+    else header.classList.remove('is-hidden');
+    lastY = y;
+  }, { passive: true });
+
+  if (['127.0.0.1', 'localhost'].includes(location.hostname)) window.__journey = journey;
+
+  // Completion overlay actions. (inline display beats any stale-cached CSS)
+  const hideComplete = () => { const el = document.getElementById('jc-complete'); el.hidden = true; el.style.display = 'none'; };
+  document.getElementById('cc-restart').addEventListener('click', () => {
+    hideComplete();
+    journey.restart();
+    document.querySelector('.journey-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  document.getElementById('cc-close').addEventListener('click', hideComplete);
+
+  // Share the completed journey — a bilingual 1080² card (S4).
+  document.getElementById('cc-share').addEventListener('click', async () => {
+    const { shareCard } = await import('./ui/share-card.js');
+    const name = journey.name;
+    const enLine = name ? `${name} lived the Story of Numbers` : 'I lived the Story of Numbers';
+    const hiLine = name ? `${name} ने संख्याओं की कहानी जी` : 'मैंने संख्याओं की कहानी जी';
+    await shareCard({
+      spec: {
+        kicker: 'Ganit ki Kahani', emoji: '🔢', big: `${journey.badgeCount}/${journey.total} ✦`,
+        lineEn: enLine, lineHi: hiLine,
+        urlShort: 'ahamaths.com', tag: 'Math you watch, not math you study',
+      },
+      text: `${enLine} — 10,000 years of numbers, played by hand. ✨`,
+      url: 'https://ahamaths.com/numbers-story.html',
+      filename: 'story-of-numbers.png',
+    });
+  });
+
+  // Email form.
+  document.getElementById('email-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.querySelector('.email-note').style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      }
+    } catch { form.querySelector('button').textContent = 'Try again'; }
+  });
+
+  // Register the SW in production; on localhost UNREGISTER it so dev never serves
+  // stale cached files (the cause of "overlay stuck open" during development).
+  if ('serviceWorker' in navigator) {
+    if (['localhost', '127.0.0.1'].includes(location.hostname)) {
+      navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
+      if (window.caches) caches.keys().then(ks => ks.forEach(k => caches.delete(k)));
+    } else {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0D1424"/>
+      <stop offset="1" stop-color="#090C15"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.18" cy="0.15" r="0.9">
+      <stop offset="0" stop-color="#22D3EE" stop-opacity="0.20"/>
+      <stop offset="0.55" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0.95" cy="0.9" r="0.7">
+      <stop offset="0" stop-color="#A78BFA" stop-opacity="0.16"/>
+      <stop offset="0.6" stop-color="#A78BFA" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="0.3">
+      <stop offset="0" stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#7CC6F0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+
+  <!-- faint drifting glyphs -->
+  <g font-family="'JetBrains Mono',monospace" font-weight="700">
+    <text x="980" y="150" font-size="64" fill="#22D3EE" opacity="0.14">0</text>
+    <text x="1060" y="250" font-size="44" fill="#A78BFA" opacity="0.13">1</text>
+    <text x="900" y="330" font-size="52" fill="#FBBF24" opacity="0.12">2</text>
+    <text x="1090" y="430" font-size="40" fill="#22D3EE" opacity="0.12">π</text>
+    <text x="940" y="520" font-size="56" fill="#22D3EE" opacity="0.10">∞</text>
+  </g>
+
+  <!-- brand mark -->
+  <g transform="translate(90,86)">
+    <rect width="52" height="52" rx="12" fill="#22D3EE"/>
+    <text x="26" y="34" font-family="'JetBrains Mono',monospace" font-size="20" font-weight="700" fill="#0B0F1A" text-anchor="middle">AM</text>
+    <text x="70" y="35" font-size="28" font-weight="700" fill="#FFFFFF">Aha Maths</text>
+  </g>
+
+  <!-- eyebrow -->
+  <text x="92" y="250" font-size="22" font-weight="700" letter-spacing="6" fill="#22D3EE">GANIT DEKHO · KHELO · SAMAJHO</text>
+
+  <!-- headline -->
+  <text x="88" y="360" font-size="92" font-weight="800" letter-spacing="-2" fill="#FFFFFF">The <tspan fill="url(#cyan)">aha moment</tspan>,</text>
+  <text x="88" y="460" font-size="92" font-weight="800" letter-spacing="-2" fill="#FFFFFF">not the textbook.</text>
+
+  <!-- sub -->
+  <text x="92" y="540" font-size="30" fill="#94A3B8">Visual mathematics in Hinglish — see it, play it, understand it.</text>
+</svg>

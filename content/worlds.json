@@ -1,0 +1,111 @@
+[
+  {
+    "id": "numbers",
+    "order": 1,
+    "icon": "🔢",
+    "color": "#22D3EE",
+    "i18n": { "name": "world.numbers.name", "subtitle": "world.numbers.subtitle", "desc": "world.numbers.desc" },
+    "lessons": [
+      { "id": "1-01-counting",    "order": 1 },
+      { "id": "1-02-place-value", "order": 2 },
+      { "id": "1-03-number-line", "order": 3 },
+      { "id": "1-04-negatives",   "order": 4 }
+    ]
+  },
+  {
+    "id": "arithmetic",
+    "order": 2,
+    "icon": "➕",
+    "color": "#FBBF24",
+    "i18n": { "name": "world.arithmetic.name", "subtitle": "world.arithmetic.subtitle", "desc": "world.arithmetic.desc" },
+    "lessons": [
+      { "id": "2-01-addition",       "order": 1 },
+      { "id": "2-02-subtraction",    "order": 2 },
+      { "id": "2-03-multiplication", "order": 3 },
+      { "id": "2-04-division",       "order": 4 },
+      { "id": "2-05-neg-times-neg",  "order": 5 }
+    ]
+  },
+  {
+    "id": "fractions",
+    "order": 3,
+    "icon": "🍕",
+    "color": "#F97316",
+    "i18n": { "name": "world.fractions.name", "subtitle": "world.fractions.subtitle", "desc": "world.fractions.desc" },
+    "lessons": [
+      { "id": "3-01-part-of-whole",  "order": 1 },
+      { "id": "3-02-equiv-fractions","order": 2 },
+      { "id": "3-03-add-fractions",  "order": 3 },
+      { "id": "3-04-decimals",       "order": 4 },
+      { "id": "3-05-percentages",    "order": 5 }
+    ]
+  },
+  {
+    "id": "shapes",
+    "order": 4,
+    "icon": "🔺",
+    "color": "#34D399",
+    "i18n": { "name": "world.shapes.name", "subtitle": "world.shapes.subtitle", "desc": "world.shapes.desc" },
+    "lessons": [
+      { "id": "4-01-angles",      "order": 1 },
+      { "id": "4-02-triangles",   "order": 2 },
+      { "id": "4-03-area",        "order": 3 },
+      { "id": "4-04-circle-area", "order": 4 },
+      { "id": "4-05-symmetry",    "order": 5 }
+    ]
+  },
+  {
+    "id": "algebra",
+    "order": 5,
+    "icon": "🔣",
+    "color": "#A78BFA",
+    "i18n": { "name": "world.algebra.name", "subtitle": "world.algebra.subtitle", "desc": "world.algebra.desc" },
+    "lessons": [
+      { "id": "5-01-patterns",    "order": 1 },
+      { "id": "5-02-unknown-box", "order": 2 },
+      { "id": "5-03-equations",   "order": 3 },
+      { "id": "5-04-pythagoras",  "order": 4 },
+      { "id": "5-05-graphs",      "order": 5 }
+    ]
+  },
+  {
+    "id": "measure",
+    "order": 6,
+    "icon": "📏",
+    "color": "#FB7185",
+    "i18n": { "name": "world.measure.name", "subtitle": "world.measure.subtitle", "desc": "world.measure.desc" },
+    "lessons": [
+      { "id": "6-01-units",      "order": 1 },
+      { "id": "6-02-ratio",      "order": 2 },
+      { "id": "6-03-proportion", "order": 3 },
+      { "id": "6-04-speed",      "order": 4 }
+    ]
+  },
+  {
+    "id": "data",
+    "order": 7,
+    "icon": "📊",
+    "color": "#38BDF8",
+    "i18n": { "name": "world.data.name", "subtitle": "world.data.subtitle", "desc": "world.data.desc" },
+    "lessons": [
+      { "id": "7-01-charts",      "order": 1 },
+      { "id": "7-02-average",     "order": 2 },
+      { "id": "7-03-probability", "order": 3 },
+      { "id": "7-04-monte-carlo", "order": 4 },
+      { "id": "7-05-game-of-life","order": 5 }
+    ]
+  },
+  {
+    "id": "infinite",
+    "order": 8,
+    "icon": "∞",
+    "color": "#E879F9",
+    "i18n": { "name": "world.infinite.name", "subtitle": "world.infinite.subtitle", "desc": "world.infinite.desc" },
+    "lessons": [
+      { "id": "8-01-limits",    "order": 1 },
+      { "id": "8-02-fibonacci", "order": 2 },
+      { "id": "8-03-primes",    "order": 3 },
+      { "id": "8-04-calculus",  "order": 4 }
+    ]
+  }
+]

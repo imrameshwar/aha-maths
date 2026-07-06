@@ -1,0 +1,701 @@
+/* styles/learn.css — learn platform shell: theme tokens + lesson renderer.
+   Layered on top of style.css (base reset + fonts).
+   All color values come from CSS custom properties — never hardcode hex here. */
+
+/* ── Theme tokens now live in styles/tokens.css (single source, loaded first
+      on every page). This file only *references* them. ──────────────────────── */
+
+/* ── Override base body to pick up theme vars ──────────────────────────────── */
+/* Background (atmosphere layers) is owned by style.css so it stays consistent
+   across every page; here we only ensure text colour tracks the active theme. */
+body {
+  color: var(--text-hi);
+  transition: color 0.2s;
+}
+
+/* ── Learn-page header ─────────────────────────────────────────────────────── */
+.learn-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.learn-nav {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.learn-nav a {
+  color: var(--text-lo);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.learn-nav a:hover,
+.learn-nav a.is-active {
+  color: var(--primary);
+}
+
+/* ── Settings button + panel now live in style.css (shared across every ────── */
+/* page, not just Learn — moved so index.html's header ⚙ can use them too). ── */
+
+/* ── Main learn layout ─────────────────────────────────────────────────────── */
+.learn-main {
+  padding: 40px 0 80px;
+}
+
+.learn-main .container {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ── Lesson header ─────────────────────────────────────────────────────────── */
+.lesson-world-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+  width: fit-content;
+}
+
+.lesson-title {
+  font-size: clamp(26px, 5vw, 40px);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.lesson-subtitle {
+  font-size: 15px;
+  color: var(--text-lo);
+}
+
+/* ── Beat navigation dots ──────────────────────────────────────────────────── */
+.beat-nav {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  position: relative;
+}
+
+/* Connecting line between dots */
+.beat-nav::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  right: 18px;
+  height: 2px;
+  background: var(--grid);
+  z-index: 0;
+}
+
+.beat-dot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.beat-dot-pip {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--grid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+}
+
+.beat-dot:hover .beat-dot-pip {
+  border-color: var(--primary);
+  transform: scale(1.08);
+}
+
+.beat-dot.is-active .beat-dot-pip {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--bg);
+  font-size: 0; /* hide emoji, show nothing — pip is just the filled circle */
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 20%, transparent);
+}
+
+.beat-dot.is-done .beat-dot-pip {
+  border-color: var(--success);
+  background: var(--success);
+  color: var(--bg);
+  font-size: 14px;
+}
+
+.beat-dot-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-lo);
+  text-align: center;
+  transition: color 0.2s;
+  line-height: 1.2;
+}
+
+.beat-dot.is-active .beat-dot-label { color: var(--primary); }
+.beat-dot.is-done .beat-dot-label   { color: var(--success); }
+
+/* ── Beat card ─────────────────────────────────────────────────────────────── */
+.beat-card {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 340px;
+  box-shadow: var(--elev-2), var(--highlight-top);
+  animation: beatIn 0.25s var(--ease-out);
+}
+
+@keyframes beatIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.beat-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.beat-name    { color: var(--primary); }
+.beat-sub     { color: var(--text-lo); font-weight: 500; }
+
+.beat-title {
+  font-size: clamp(20px, 4vw, 28px);
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.beat-body {
+  font-size: 16px;
+  color: var(--text-lo);
+  line-height: 1.7;
+}
+
+/* Beat-specific accent border */
+.beat-hook    { border-top: 3px solid var(--secondary); }
+.beat-play    { border-top: 3px solid var(--primary);   }
+.beat-aha     { border-top: 3px solid var(--accent2);   }
+.beat-check   { border-top: 3px solid var(--success);   }
+.beat-connect { border-top: 3px solid var(--secondary); }
+
+/* ── Placeholder area (replaces the visualizer/illustration until P1) ──────── */
+.beat-placeholder {
+  flex: 1;
+  margin-top: 8px;
+  min-height: 140px;
+  background: var(--surface2);
+  border: 2px dashed var(--grid);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.beat-aha-bg {
+  background: color-mix(in srgb, var(--accent2) 8%, transparent);
+  border-color: color-mix(in srgb, var(--accent2) 30%, transparent);
+}
+
+.ph-icon { font-size: 40px; }
+
+.ph-note {
+  font-size: 12px;
+  color: var(--text-lo);
+  text-align: center;
+  padding: 0 16px;
+  font-style: italic;
+}
+
+/* ── Check beat ────────────────────────────────────────────────────────────── */
+.check-tasks  { display: flex; flex-direction: column; gap: 16px; }
+.check-task   { display: flex; flex-direction: column; gap: 10px; }
+.check-prompt { font-size: 15px; color: var(--text-hi); font-weight: 500; }
+
+/* ── Connect beat ──────────────────────────────────────────────────────────── */
+.connect-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.connect-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: opacity 0.15s, transform 0.15s;
+  cursor: pointer;
+}
+
+.connect-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+.connect-watch {
+  background: var(--surface2);
+  border: 1px solid var(--grid);
+  color: var(--text-hi);
+}
+
+.connect-watch.is-soon {
+  color: var(--text-lo);
+  cursor: default;
+}
+.connect-watch.is-soon:hover { opacity: 1; transform: none; }
+
+.connect-next {
+  background: var(--grad-primary);
+  color: var(--bg);
+  border: 1px solid transparent;
+  box-shadow: var(--elev-1), 0 6px 20px var(--primary-glow);
+}
+.connect-share {
+  background: var(--surface2);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  font-weight: 700;
+}
+.connect-share:hover { background: var(--primary-wash); }
+.connect-share:disabled { opacity: 0.6; cursor: default; transform: none; }
+.connect-btn:active { transform: translateY(0) scale(0.98); }
+
+/* ── Beat prev/next controls ───────────────────────────────────────────────── */
+.beat-controls {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.beat-nav-btn {
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.15s;
+  border: 1px solid var(--grid);
+  background: var(--surface);
+  color: var(--text-hi);
+  flex: 1;
+}
+
+.beat-nav-btn:hover:not(:disabled) { border-color: var(--primary); transform: translateY(-1px); }
+
+.beat-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.beat-nav-next {
+  background: var(--grad-primary);
+  border-color: transparent;
+  color: var(--bg);
+  box-shadow: var(--elev-1), 0 6px 20px var(--primary-glow);
+}
+
+.beat-nav-next:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--elev-2), 0 10px 28px var(--primary-glow);
+  filter: brightness(1.05);
+}
+.beat-nav-btn:active:not(:disabled) { transform: translateY(0) scale(0.98); }
+
+/* ── Error state ───────────────────────────────────────────────────────────── */
+.lesson-error {
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--text-lo);
+}
+
+.lesson-error h2 { color: var(--danger); margin-bottom: 8px; }
+
+/* ── Empty state: lesson not yet authored (content cliff, not a crash) ──────── */
+.lesson-empty {
+  padding: 56px 24px;
+  text-align: center;
+  max-width: 420px;
+  margin: 0 auto;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--elev-2), var(--highlight-top);
+}
+.lesson-empty-mascot { margin-bottom: 20px; opacity: 0.9; }
+.lesson-empty h2 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+.lesson-empty p { color: var(--text-lo); font-size: 14.5px; line-height: 1.6; margin-bottom: 24px; }
+
+/* ── Responsive ────────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .learn-nav { display: none; }
+  .beat-card { padding: 24px 20px; }
+  .beat-dot-label { font-size: 9px; }
+
+  .beat-controls { gap: 8px; }
+  .beat-nav-btn  { padding: 11px 14px; font-size: 13px; }
+}
+
+@media (max-width: 360px) {
+  .beat-dot-label { display: none; }
+}
+
+/* ── Audio button ──────────────────────────────────────────────────────────── */
+.audio-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--grid);
+  background: var(--surface2);
+  color: var(--text-lo);
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  align-self: flex-start;
+}
+
+.audio-btn:hover { border-color: var(--primary); color: var(--primary); }
+.audio-btn .audio-ico { width: 15px; height: 15px; flex-shrink: 0; }
+
+/* ── Sketch canvas container ───────────────────────────────────────────────── */
+.sketch-wrap {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg);
+  border: 1px solid var(--grid);
+  min-height: 120px;
+  flex: 1;
+}
+
+.sketch-wrap canvas {
+  display: block;
+  width: 100% !important;
+}
+
+/* ── Hook illustration ─────────────────────────────────────────────────────── */
+/* Authored "one-to-one correspondence" hook visual (replaces the 🍞 emoji):
+   a glowing object (token) linked to its count number, five across. */
+.hook-illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 0;
+  flex: 1;
+}
+
+.hook-units { display: flex; gap: 16px; }
+
+.hook-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: popIn 0.4s var(--ease-spring) both;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.3) rotate(-15deg); }
+  60%  { transform: scale(1.15) rotate(4deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+.hook-token {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, color-mix(in srgb, var(--primary) 55%, #fff), var(--primary));
+  box-shadow: 0 3px 10px var(--primary-glow), var(--highlight-top);
+}
+.hook-link { width: 2px; height: 12px; border-radius: 2px; background: var(--border-soft); }
+.hook-num {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--secondary); color: var(--bg);
+  font-family: var(--font-mono); font-weight: 700; font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ── Aha reveal ────────────────────────────────────────────────────────────── */
+.aha-reveal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 0;
+  animation: fadeUp 0.6s ease 0.3s both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.aha-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 72px;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.aha-equals {
+  font-size: 36px;
+  color: var(--text-lo);
+  font-weight: 300;
+}
+
+.aha-items {
+  display: flex;
+  gap: 8px;
+  font-size: 28px;
+  color: var(--secondary);
+}
+
+.aha-items span { animation: popIn 0.35s ease both; }
+.aha-items span:nth-child(1) { animation-delay: 0.4s; }
+.aha-items span:nth-child(2) { animation-delay: 0.5s; }
+.aha-items span:nth-child(3) { animation-delay: 0.6s; }
+.aha-items span:nth-child(4) { animation-delay: 0.7s; }
+.aha-items span:nth-child(5) { animation-delay: 0.8s; }
+
+/* ── Confetti ──────────────────────────────────────────────────────────────── */
+.confetti-stage {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.beat-aha { position: relative; overflow: hidden; }
+
+.confetti-dot {
+  position: absolute;
+  top: -12px;
+  border-radius: 50%;
+  animation: confettiFall linear both;
+}
+
+@keyframes confettiFall {
+  0%   { transform: translateY(0)   rotate(0deg)   scale(1);   opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateY(320px) rotate(480deg) scale(0.6); opacity: 0; }
+}
+
+/* ── Check beat: tap-count interaction ─────────────────────────────────────── */
+.tap-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 12px 0;
+}
+
+.tap-item {
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  border: 2px solid var(--border-soft);
+  background: var(--surface2);
+  cursor: pointer;
+  transition: transform 0.15s var(--ease-out), border-color 0.15s, background 0.15s;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--highlight-top);
+}
+
+/* authored token: an empty ring that fills when tapped (was a 🥭 emoji) */
+.tap-item::before {
+  content: ''; width: 22px; height: 22px; border-radius: 50%;
+  border: 2px solid var(--text-lo);
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.tap-item:hover { border-color: var(--primary); transform: scale(1.08); }
+.tap-item:hover::before { border-color: var(--primary); }
+
+.tap-item.is-tapped {
+  background: var(--secondary);
+  border-color: var(--secondary);
+  animation: tapPop 0.35s var(--ease-spring);
+}
+.tap-item.is-tapped::before { border-color: var(--bg); background: var(--bg); }
+
+@keyframes tapPop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+
+.tap-counter {
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--text-lo);
+  padding: 4px 0;
+}
+
+.tc-num { color: var(--primary); font-size: 26px; }
+
+.tap-success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: color-mix(in srgb, var(--success) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--success) 35%, transparent);
+  border-radius: 10px;
+  animation: fadeUp 0.4s ease;
+}
+
+.tap-success[hidden] { display: none; }
+
+.ts-icon { font-size: 22px; color: var(--success); }
+.ts-text { font-weight: 700; color: var(--success); font-size: 16px; }
+
+.pop-in { animation: popIn 0.4s ease; }
+
+/* ── Colorblind-safe theme [data-theme="cb"] now lives in styles/tokens.css ── */
+
+/* ── Font size scaling ─────────────────────────────────────────────────────── */
+:root { --font-scale: 1; }
+[data-fontsize="sm"] { --font-scale: 0.875; }
+[data-fontsize="lg"] { --font-scale: 1.1875; }
+
+.beat-body       { font-size: calc(16px * var(--font-scale)); }
+.beat-title      { font-size: clamp(calc(20px * var(--font-scale)), 4vw, calc(28px * var(--font-scale))); }
+.lesson-title    { font-size: clamp(calc(26px * var(--font-scale)), 5vw, calc(40px * var(--font-scale))); }
+.lesson-subtitle { font-size: calc(15px * var(--font-scale)); }
+
+/* ── Dyslexia-friendly font ────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/fonts/OpenDyslexic-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+[data-font="dyslexic"] .beat-body,
+[data-font="dyslexic"] .beat-title,
+[data-font="dyslexic"] .lesson-title,
+[data-font="dyslexic"] .lesson-subtitle,
+[data-font="dyslexic"] .check-prompt,
+[data-font="dyslexic"] .hub-worlds-section p {
+  font-family: 'OpenDyslexic', 'Comic Sans MS', cursive !important;
+  letter-spacing: 0.05em;
+  word-spacing: 0.1em;
+  line-height: 1.85;
+}
+
+/* ── Skip-to-content link now lives in style.css (shared across every page). ── */
+
+/* ── Mascot guide ──────────────────────────────────────────────────────────── */
+.mascot-guide {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+  animation: fadeUp 0.5s ease 0.9s both;
+}
+
+.mascot-char {
+  width: 46px;
+  height: 46px;
+  display: block;
+  flex-shrink: 0;
+  animation: mascotBounce 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 1s both;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+}
+
+.mascot-bubble {
+  background: var(--surface2);
+  border: 1px solid var(--grid);
+  border-radius: 14px 14px 14px 4px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-hi);
+  max-width: 280px;
+  animation: fadeUp 0.4s ease 0.8s both;
+}
+
+@keyframes mascotBounce {
+  0%   { transform: scale(0.3) translateY(20px); opacity: 0; }
+  70%  { transform: scale(1.2) translateY(-6px); opacity: 1; }
+  100% { transform: scale(1)   translateY(0);    opacity: 1; }
+}
+
+/* ── Reduced motion — media query ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .beat-card, .hook-item, .hc-num, .aha-items span,
+  .aha-reveal, .confetti-dot, .tap-item,
+  .mascot-guide, .mascot-char, .mascot-bubble { animation: none !important; }
+  * { transition-duration: 0.01ms !important; }
+}
+
+/* ── Reduced motion — data attribute (manual toggle) ──────────────────────── */
+[data-motion="reduce"] .beat-card,
+[data-motion="reduce"] .hook-item,
+[data-motion="reduce"] .hc-num,
+[data-motion="reduce"] .aha-items span,
+[data-motion="reduce"] .aha-reveal,
+[data-motion="reduce"] .confetti-dot,
+[data-motion="reduce"] .tap-item,
+[data-motion="reduce"] .world-card,
+[data-motion="reduce"] .mascot-guide,
+[data-motion="reduce"] .mascot-char,
+[data-motion="reduce"] .mascot-bubble { animation: none !important; opacity: 1; }
+[data-motion="reduce"] * { transition-duration: 0.01ms !important; }
+
+/* ── P5 · Kid theme — friendlier shapes & bigger tap targets ─────────────────
+   Not just a palette swap: rounder surfaces and larger touch areas for small
+   hands (radius tokens are overridden only under this theme). */
+[data-theme="kid"] {
+  --radius:    16px;
+  --radius-sm: 12px;
+  --radius-lg: 22px;
+}
+[data-theme="kid"] .beat-card       { border-radius: 24px; }
+[data-theme="kid"] .beat-dot-pip    { width: 40px; height: 40px; }
+[data-theme="kid"] .beat-nav-btn,
+[data-theme="kid"] .connect-btn     { border-radius: 14px; padding-top: 14px; padding-bottom: 14px; }
+[data-theme="kid"] .tap-item        { width: 62px; height: 62px; }

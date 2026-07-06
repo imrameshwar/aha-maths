@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interactive Area of a Circle = πr² | Aha Maths</title>
+  <meta name="description" content="Drag slices to see why Area = πr². Slice a circle into wedges and watch them rearrange into a perfect rectangle. Interactive simulation + Hinglish explainer.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="article">
+  <meta property="og:title"       content="Interactive Area of a Circle = πr² | Aha Maths">
+  <meta property="og:description" content="Drag slices to see why Area = πr². Slice the circle into wedges and watch them rearrange into a perfect rectangle.">
+  <meta property="og:url"         content="https://ahamaths.com/area-of-circle.html">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Interactive Area of a Circle = πr² | Aha Maths">
+  <meta name="twitter:description" content="Drag slices to see why Area = πr². The limit argument in your hand.">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "Interactive Area of a Circle = πr²",
+    "description": "Drag slices to see why Area = πr². Slice the circle into wedges and watch them rearrange into a perfect rectangle. Proof by visual limit.",
+    "educationalLevel": "Middle School",
+    "learningResourceType": "Interactive Simulation",
+    "inLanguage": ["en", "hi"],
+    "url": "https://ahamaths.com/area-of-circle.html",
+    "author": { "@type": "Person", "name": "Aha Maths", "url": "https://ahamaths.com" }
+  }
+  </script>
+
+  <link rel="canonical" href="https://ahamaths.com/area-of-circle.html">
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- p5 loaded as global UMD so ES module imports can use window.p5 (third-party lib) -->
+  <script src="lib/p5.min.js"></script>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="index.html">
+      <div class="logo-mark">AM</div>
+      Aha Maths
+    </a>
+    <a class="handle-link" href="https://www.youtube.com/@AhaMathsOfficial" target="_blank" rel="noopener">@AhaMathsOfficial ↗</a>
+  </div>
+</header>
+
+<!-- ── Sim header ── -->
+<div class="container">
+  <div class="sim-header">
+    <p class="breadcrumb"><a href="index.html">← All simulations</a></p>
+    <h1>Area of a Circle = πr²</h1>
+    <span class="hook-tag">Why πr²? Slice it like pizza 🍕</span>
+  </div>
+</div>
+
+<!-- ── Stage: video + interactive ── -->
+<div class="container">
+  <div class="sim-stage">
+
+    <!-- Video column -->
+    <div class="sim-video-col">
+      <h2>Watch the Short</h2>
+      <div class="video-embed-wrap">
+        <!-- Replace data-video-id with the real YouTube video ID after publishing -->
+        <div class="video-placeholder" id="video-placeholder">
+          <div class="play-icon">▶</div>
+          <p>Video publishing soon.<br>Subscribe to <a href="https://www.youtube.com/@AhaMathsOfficial" target="_blank" rel="noopener">@AhaMathsOfficial</a> to catch it first.</p>
+        </div>
+        <!-- Uncomment and fill in after publishing:
+        <iframe id="yt-embed"
+          src="https://www.youtube.com/embed/REPLACE_VIDEO_ID?rel=0&modestbranding=1"
+          title="Area of a Circle = πr² — Aha Maths"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+        -->
+      </div>
+    </div>
+
+    <!-- Interactive column -->
+    <div class="sim-interactive-col">
+      <h2>Play with it</h2>
+      <div class="canvas-wrap" id="canvas-wrap"></div>
+
+      <div class="controls-panel" id="controls-panel">
+        <!-- Built by JS from viz.controls schema -->
+        <p style="color:var(--text-lo);font-size:13px">Loading…</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── Explainer ── -->
+<div class="container">
+  <div class="explainer">
+    <h2>How does it work?</h2>
+    <p>
+      The formula <strong>Area = πr²</strong> isn't magic — it's geometry you can see.
+      The interactive above lets you feel the proof, step by step.
+    </p>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text"><strong>Start with a circle.</strong> Radius <em>r</em>, area unknown. We need to figure out what πr² even means.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text"><strong>Slice it like pizza.</strong> Cut the circle into <em>N</em> equal wedges — thin triangular sectors. The more slices, the thinner each wedge.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text"><strong>Rearrange the wedges.</strong> Flip alternating wedges and lay them in a row — tips up, tips down, interlocking. You get a bumpy parallelogram.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-text"><strong>Take the limit.</strong> As <em>N → ∞</em>, the bumpy edges flatten. The parallelogram becomes a perfect <strong>rectangle</strong>.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-text">
+        <strong>Read the rectangle.</strong> Its height is <em>r</em> (the radius). Its width is half the circumference — <em>πr</em>.
+        So <strong>Area = πr × r = πr²</strong>. Bas itna simple tha!
+      </div>
+    </div>
+
+    <p style="margin-top:24px">
+      Drag the <strong>Slices</strong> slider in the interactive above and watch the bumpy top and bottom edges
+      flatten into a straight line as N increases. That's the limit argument — not a formula to memorise,
+      but a shape you can feel.
+    </p>
+  </div>
+</div>
+
+<!-- ── Email capture ── -->
+<section class="container">
+  <div class="email-section">
+    <h2>More aha moments, weekly</h2>
+    <p>Get notified when a new simulation drops. One email per week, no spam.</p>
+    <form class="email-form" id="email-form"
+          action="https://formspree.io/f/REPLACE_WITH_FORM_ID"
+          method="POST">
+      <input type="hidden" name="_source" value="area-of-circle">
+      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+      <button type="submit">Notify me</button>
+    </form>
+    <p class="email-note">Unsubscribe any time.</p>
+    <p class="form-success" id="form-success">✓ You're in! Watch for the next aha.</p>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="site-footer">
+  <div class="container">
+    <p>
+      <a href="index.html">← All simulations</a>
+      &nbsp;·&nbsp;
+      <a href="https://www.youtube.com/@AhaMathsOfficial" target="_blank" rel="noopener">YouTube @AhaMathsOfficial</a>
+      &nbsp;·&nbsp;
+      Made with p5.js
+    </p>
+  </div>
+</footer>
+
+<!-- ── Interactive sketch ── -->
+<script type="module">
+  // Load fonts before p5 draws anything.
+  await document.fonts.load('bold 48px "Inter"');
+  await document.fonts.load('bold 48px "JetBrains Mono"');
+  await document.fonts.ready;
+
+  // Sim code lives HERE — this website is the source of truth. Edit engine/ and
+  // visualizers/ in this repo; `npm run sync` pushes them to the Studio for rendering.
+  // (sims/*.config.js are local PREVIEW configs; the Studio owns the production ones.)
+  const { default: config } = await import('./sims/area-of-circle.config.js');
+  const { default: viz    } = await import('./visualizers/area-of-circle.js');
+  const { createInteractive } = await import('./engine/interactive.js');
+
+  // Size the canvas to fill its container at 9:16.
+  const wrap = document.getElementById('canvas-wrap');
+  function canvasSize() {
+    const w = wrap.clientWidth;
+    return { w, h: Math.round(w * 16 / 9) };
+  }
+
+  let interactive;
+  let canvW, canvH;
+
+  new p5((p) => {
+    p.setup = () => {
+      const sz = canvasSize();
+      canvW = sz.w; canvH = sz.h;
+      const cnv = p.createCanvas(canvW, canvH);
+      cnv.parent('canvas-wrap');
+      p.frameRate(60);
+      interactive = createInteractive(p, { config, viz });
+      buildControls(interactive.controls, interactive.params);
+    };
+
+    p.draw = () => { interactive.tick(); };
+
+    p.windowResized = () => {
+      const sz = canvasSize();
+      if (sz.w === canvW && sz.h === canvH) return;
+      canvW = sz.w; canvH = sz.h;
+      p.resizeCanvas(canvW, canvH);
+      interactive.windowResized();
+    };
+  });
+
+  function fmt(ctl, v) {
+    return ctl.step >= 1 ? String(Math.round(v)) : v.toFixed(2);
+  }
+
+  function buildControls(controls, params) {
+    const panel = document.getElementById('controls-panel');
+    panel.innerHTML = '';
+    for (const [name, ctl] of Object.entries(controls)) {
+      const div = document.createElement('div');
+      div.className = 'ctrl';
+
+      const header = document.createElement('div');
+      header.className = 'ctrl-header';
+
+      const label = document.createElement('span');
+      label.className = 'ctrl-label';
+      label.textContent = ctl.label || name;
+
+      const valEl = document.createElement('span');
+      valEl.className = 'ctrl-value';
+      valEl.textContent = fmt(ctl, params[name]);
+
+      header.append(label, valEl);
+
+      const input = document.createElement('input');
+      input.type = 'range';
+      input.min = ctl.min; input.max = ctl.max; input.step = ctl.step;
+      input.value = params[name];
+      input.addEventListener('input', () => {
+        const v = parseFloat(input.value);
+        interactive.setParam(name, v);
+        valEl.textContent = fmt(ctl, v);
+      });
+
+      const bounds = document.createElement('div');
+      bounds.className = 'ctrl-bounds';
+      bounds.innerHTML = `<span>${ctl.min}</span><span>${ctl.max}</span>`;
+
+      div.append(header, input, bounds);
+      panel.append(div);
+    }
+  }
+
+  // Email form
+  document.getElementById('email-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST', body: new FormData(form),
+        headers: { 'Accept': 'application/json' },
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.querySelector('.email-note').style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      }
+    } catch {
+      form.querySelector('button').textContent = 'Try again';
+    }
+  });
+</script>
+
+</body>
+</html>

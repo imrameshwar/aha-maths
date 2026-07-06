@@ -1,0 +1,27 @@
+/* styles/error.css — the 404 page. Small, self-contained, on-brand: a maths
+   joke (division by zero is undefined — so is this page) instead of a bare
+   error box. */
+
+.error-page { padding: 72px 0 96px; }
+.error-stage {
+  max-width: 460px;
+  text-align: center;
+}
+.error-equation {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  color: var(--text-lo);
+  letter-spacing: 0.02em;
+  margin-bottom: 20px;
+}
+.error-huh {
+  color: var(--primary);
+  font-weight: 700;
+  text-shadow: 0 0 16px var(--primary-glow);
+}
+.error-mascot { margin-bottom: 24px; filter: drop-shadow(0 8px 20px var(--primary-glow)); }
+.error-page h1 { font-size: clamp(24px, 4vw, 32px); font-weight: 800; margin-bottom: 12px; }
+.error-page p  { color: var(--text-lo); font-size: 15px; line-height: 1.6; margin-bottom: 32px; }
+.error-actions { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.error-secondary { font-size: 14px; font-weight: 600; color: var(--text-lo); }
+.error-secondary:hover { color: var(--primary); }

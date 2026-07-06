@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ganita the owl">
+  <defs>
+    <linearGradient id="ow-body" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#A78BFA"/>
+    </linearGradient>
+  </defs>
+  <!-- ear tufts -->
+  <path d="M17 15 L25 23 L13 23 Z" fill="#A78BFA"/>
+  <path d="M47 15 L51 23 L39 23 Z" fill="#22D3EE"/>
+  <!-- body -->
+  <ellipse cx="32" cy="36" rx="20" ry="21" fill="url(#ow-body)"/>
+  <!-- belly -->
+  <ellipse cx="32" cy="42" rx="12.5" ry="13" fill="#0B0F1A" fill-opacity="0.16"/>
+  <!-- eye discs -->
+  <circle cx="24" cy="30" r="9" fill="#FFFFFF"/>
+  <circle cx="40" cy="30" r="9" fill="#FFFFFF"/>
+  <!-- irises -->
+  <circle cx="25" cy="31" r="4.6" fill="#0B0F1A"/>
+  <circle cx="39" cy="31" r="4.6" fill="#0B0F1A"/>
+  <!-- glints -->
+  <circle cx="26.6" cy="29.4" r="1.5" fill="#FFFFFF"/>
+  <circle cx="40.6" cy="29.4" r="1.5" fill="#FFFFFF"/>
+  <!-- beak -->
+  <path d="M32 34 L28 38 L36 38 Z" fill="#FBBF24"/>
+  <!-- feet -->
+  <g stroke="#FBBF24" stroke-width="1.8" stroke-linecap="round">
+    <path d="M27 56 l-2 4 M28.5 56 l0 4 M30 56 l2 4"/>
+    <path d="M34 56 l-2 4 M35.5 56 l0 4 M37 56 l2 4"/>
+  </g>
+</svg>

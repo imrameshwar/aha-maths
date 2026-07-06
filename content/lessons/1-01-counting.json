@@ -1,0 +1,35 @@
+{
+  "id": "1-01-counting",
+  "world": "numbers",
+  "world_order": 1,
+  "lesson_order": 1,
+  "tiers": ["beginner", "explorer", "deep"],
+  "default_tier": "beginner",
+  "visualizer": "counting",
+  "i18n": {
+    "title":            "lesson.counting.title",
+    "subtitle":         "lesson.counting.subtitle",
+    "hook_title":       "lesson.counting.hook.title",
+    "hook_body":        "lesson.counting.hook.body",
+    "play_title":       "lesson.counting.play.title",
+    "play_instruction": "lesson.counting.play.instruction",
+    "aha_title":        "lesson.counting.aha.title",
+    "aha_body":         "lesson.counting.aha.body",
+    "check_title":      "lesson.counting.check.title",
+    "connect_body":     "lesson.counting.connect.body",
+    "connect_next_label": "lesson.counting.connect.next_label"
+  },
+  "checks": [
+    {
+      "type": "scene-count",
+      "scene": "mango-tree",
+      "count": 5,
+      "i18n": {
+        "prompt": "lesson.counting.check_q1.prompt"
+      }
+    }
+  ],
+  "watch_url": null,
+  "next": "1-02-place-value",
+  "prev": null
+}

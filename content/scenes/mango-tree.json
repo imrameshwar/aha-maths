@@ -1,0 +1,20 @@
+{
+  "id": "mango-tree",
+  "image": "assets/scenes/mango-tree.svg",
+  "aspect": 1.3333,
+  "object_i18n": "scene.mango.object",
+  "emoji": "🥭",
+  "count": 5,
+  "difficulty": 1,
+  "hotspots": [
+    { "x": 0.313, "y": 0.350, "r": 0.075 },
+    { "x": 0.463, "y": 0.300, "r": 0.075 },
+    { "x": 0.625, "y": 0.367, "r": 0.075 },
+    { "x": 0.375, "y": 0.517, "r": 0.075 },
+    { "x": 0.588, "y": 0.550, "r": 0.075 }
+  ],
+  "decoys": [
+    { "x": 0.750, "y": 0.250, "r": 0.060, "i18n": "scene.mango.decoy_bird" }
+  ],
+  "_note": "count + hotspot coords are the code-owned TRUTH. Verified against assets/scenes/mango-tree.svg (viewBox 800x600). If you swap in a Higgsfield still, re-author these in tools/hotspot-author.html — never trust the generated pixels for the count."
+}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aha Maths — Aaj ka Khoj</title>
+  <meta name="description" content="Aaj ka Khoj — today's tap-and-count find. Spot every object, share your score. Ganit dekho, khelo, samajho.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Aha Maths — Aaj ka Khoj (Today's Find)">
+  <meta property="og:description" content="Tap and count today's scene. Find them all, share your card.">
+  <meta property="og:url"         content="https://ahamaths.com/khoj">
+  <meta property="og:image"       content="https://ahamaths.com/assets/og-image.png">
+  <meta property="og:image:width"  content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:image"       content="https://ahamaths.com/assets/og-image.png">
+
+  <!-- Inline theme init — runs before CSS to eliminate flash of wrong theme -->
+  <script>
+    (function () {
+      var t = localStorage.getItem('am-theme');
+      if (t) { document.documentElement.setAttribute('data-theme', t); return; }
+      if (!window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/scene-count.css">
+  <link rel="stylesheet" href="styles/khoj.css">
+</head>
+<body class="khoj-body">
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- ── Header (shared chrome: hamburger + ⚙) ── -->
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="index.html">
+      <div class="logo-mark">AM</div>
+      Aha Maths
+    </a>
+    <nav class="site-nav" id="site-nav">
+      <a href="numbers-story.html" class="site-nav-story">✨ <span data-i18n="home.nav_story">Story</span></a>
+      <a href="khoj.html" class="site-nav-khoj is-active">🥭 <span data-i18n="home.nav_khoj">Khoj</span></a>
+      <a href="learn.html?lesson=1-01-counting" class="site-nav-learn">📚 <span data-i18n="home.nav_learn">Learn</span></a>
+      <a class="handle-link" href="https://www.youtube.com/@AhaMathsOfficial" target="_blank" rel="noopener">@AhaMathsOfficial ↗</a>
+    </nav>
+    <div class="header-actions">
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <div class="settings-wrapper">
+        <button
+          class="settings-toggle"
+          id="settings-btn"
+          aria-label="Settings"
+          aria-expanded="false"
+          aria-haspopup="dialog"
+          title="Settings"
+        >⚙</button>
+        <div
+          class="settings-panel"
+          id="settings-panel"
+          role="dialog"
+          aria-label="Settings"
+          hidden
+        ></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── Khoj game ── -->
+<main class="khoj-main" id="main-content">
+  <div class="khoj-shell">
+
+    <header class="khoj-head">
+      <p class="khoj-kicker" data-i18n="khoj.kicker">✨ Aaj ka Khoj</p>
+      <h1 class="khoj-title" data-i18n="khoj.title">Today's Find</h1>
+      <p class="khoj-prompt" id="khoj-prompt"> </p>
+    </header>
+
+    <!-- Tap-and-count scene mounts here (reuses ui/scene-count.js) -->
+    <div class="khoj-stage" id="khoj-stage"></div>
+
+    <!-- Shareable result card (hidden until every object is found) -->
+    <section class="khoj-result" id="khoj-result" role="status" aria-live="polite" hidden>
+      <p class="khoj-result-kicker">Khoj complete! 🎉</p>
+      <div class="khoj-result-badge">
+        <span class="khoj-result-emoji" aria-hidden="true">🥭</span>
+        <span class="khoj-result-score">5/5</span>
+      </div>
+      <p class="khoj-result-line"> </p>
+      <img class="khoj-card-preview" alt="" hidden>
+      <div class="khoj-actions">
+        <button class="khoj-btn khoj-share" type="button">Share my find</button>
+        <button class="khoj-btn khoj-secondary khoj-download" type="button">Save card</button>
+        <button class="khoj-btn khoj-secondary khoj-copy" type="button">Copy link</button>
+        <button class="khoj-btn khoj-ghost khoj-again" type="button">Play again</button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<script type="module">
+  import { initI18n, getLang }  from './ui/i18n.js';
+  import { initTheme }          from './ui/theme.js';
+  import { initSettings }       from './ui/settings.js';
+  import { initAccessibility }  from './ui/accessibility.js';
+  import { initMobileNav }      from './ui/nav.js';
+  import { initKhoj }           from './ui/khoj.js';
+
+  initTheme();
+  initAccessibility();
+  initMobileNav();
+
+  async function main() {
+    await initI18n();
+    initSettings();
+    await initKhoj();
+  }
+  main().catch(console.error);
+
+  // Register service worker for offline support (bypassed on localhost).
+  if ('serviceWorker' in navigator) {
+    if (['localhost', '127.0.0.1'].includes(location.hostname)) {
+      navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
+      if (window.caches) caches.keys().then(ks => ks.forEach(k => caches.delete(k)));
+    } else {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    }
+  }
+</script>
+
+</body>
+</html>

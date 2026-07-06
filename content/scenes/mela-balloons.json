@@ -1,0 +1,21 @@
+{
+  "id": "mela-balloons",
+  "image": "assets/scenes/mela-balloons.svg",
+  "aspect": 1.3333,
+  "object_i18n": "scene.balloons.object",
+  "emoji": "🎈",
+  "count": 6,
+  "difficulty": 1,
+  "hotspots": [
+    { "x": 0.213, "y": 0.367, "r": 0.075 },
+    { "x": 0.413, "y": 0.292, "r": 0.075 },
+    { "x": 0.625, "y": 0.333, "r": 0.075 },
+    { "x": 0.819, "y": 0.408, "r": 0.075 },
+    { "x": 0.313, "y": 0.633, "r": 0.075 },
+    { "x": 0.650, "y": 0.633, "r": 0.075 }
+  ],
+  "decoys": [
+    { "x": 0.875, "y": 0.183, "r": 0.072, "i18n": "scene.balloons.decoy_kite" }
+  ],
+  "_note": "count + hotspot coords are the code-owned TRUTH. Verified against assets/scenes/mela-balloons.svg (viewBox 800x600). Swap in a Higgsfield still → re-author in tools/hotspot-author.html; never trust generated pixels for the count."
+}

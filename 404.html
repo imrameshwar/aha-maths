@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found — Aha Maths</title>
+  <meta name="robots" content="noindex">
+  <!-- Inline theme init — runs before CSS to eliminate flash of wrong theme -->
+  <script>
+    (function () {
+      var t = localStorage.getItem('am-theme');
+      if (t) { document.documentElement.setAttribute('data-theme', t); return; }
+      if (!window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/hub.css">
+  <link rel="stylesheet" href="styles/error.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- ── Header ── -->
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="index.html">
+      <div class="logo-mark">AM</div>
+      Aha Maths
+    </a>
+    <nav class="site-nav" id="site-nav">
+      <a href="numbers-story.html" class="site-nav-story">✨ <span data-i18n="home.nav_story">Story</span></a>
+      <a href="cinema.html" class="site-nav-cinema">🎬 <span data-i18n="home.nav_cinema">Cinematic</span></a>
+      <a href="learn.html?lesson=1-01-counting" class="site-nav-learn">📚 <span data-i18n="home.nav_learn">Learn</span></a>
+    </nav>
+    <div class="header-actions">
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <div class="settings-wrapper">
+        <button class="settings-toggle" id="settings-btn" aria-label="Settings" aria-expanded="false" aria-haspopup="dialog" title="Settings">⚙</button>
+        <div class="settings-panel" id="settings-panel" role="dialog" aria-label="Settings" hidden></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── 404 ── -->
+<main class="error-page" id="main-content">
+  <div class="container error-stage">
+    <p class="error-equation" aria-hidden="true">5 &divide; 0 = <span class="error-huh">?</span></p>
+    <img class="error-mascot" src="assets/mascot.svg" alt="" width="88" height="88">
+    <h1 data-i18n="error404.title">This page doesn't compute.</h1>
+    <p data-i18n="error404.body">Some things in maths are undefined — and so is this page. It may have moved, or never existed.</p>
+    <div class="error-actions">
+      <a class="btn-primary" href="index.html" data-i18n="error404.home">← Back to the map</a>
+      <a class="error-secondary" href="learn.html?lesson=1-01-counting" data-i18n="error404.learn">Start a lesson instead →</a>
+    </div>
+  </div>
+</main>
+
+<script type="module">
+  import { initI18n }           from './ui/i18n.js';
+  import { initTheme }          from './ui/theme.js';
+  import { initSettings }       from './ui/settings.js';
+  import { initAccessibility }  from './ui/accessibility.js';
+  import { initMobileNav }      from './ui/nav.js';
+
+  initTheme();
+  initAccessibility();
+  initMobileNav();
+  initI18n().then(initSettings);
+</script>
+
+</body>
+</html>

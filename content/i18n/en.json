@@ -1,0 +1,353 @@
+{
+  "ui": {
+    "aha_maths": "Aha Maths",
+    "settings": "Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "theme_dark": "Dark",
+    "theme_light": "Light",
+    "theme_hc": "High Contrast",
+    "theme_kid": "Kid",
+    "lang_en": "English",
+    "lang_hi": "हिंदी",
+    "prev": "Back",
+    "next": "Next",
+    "done": "Done!",
+    "connect_title": "You got it!",
+    "watch_short": "Watch the Short",
+    "watch_coming_soon": "Short coming soon",
+    "next_coming_soon": "More lessons coming soon",
+    "back_to_map": "← Back to the map",
+    "lesson_missing_title": "This lesson is still being drawn",
+    "lesson_missing_body": "We haven't painted this one yet — check back soon, or explore what's ready today.",
+    "scene_found_all": "You found all {n} {object}! 🎉",
+    "sound": "Sound",
+    "sound_on": "On",
+    "sound_off": "Off",
+    "listen": "Listen",
+    "theme_cb": "Color-safe",
+    "font_size": "Text size",
+    "fontsize_sm": "Small",
+    "fontsize_md": "Medium",
+    "fontsize_lg": "Large",
+    "font_style": "Font",
+    "font_default": "Default",
+    "font_dyslexic": "Dyslexia",
+    "motion": "Motion",
+    "motion_full": "On",
+    "motion_reduce": "Reduced",
+    "mascot_aha": "That's the key insight! 🎉",
+    "share_aha": "Share your aha ✨",
+    "share_aha_text": "Aaj maine seekha: {title}! ✨ Learn free at ahamaths.com",
+    "learned_card": "I learned: {title}"
+  },
+  "beats": {
+    "hook":        "Hook",
+    "hook_sub":    "Story",
+    "play":        "Play",
+    "play_sub":    "Try it",
+    "aha":         "Aha!",
+    "aha_sub":     "Understand",
+    "check":       "Check",
+    "check_sub":   "Sure?",
+    "connect":     "Connect",
+    "connect_sub": "What's next"
+  },
+  "nav": {
+    "home":  "Home",
+    "learn": "Learn",
+    "watch": "Watch"
+  },
+  "home": {
+    "nav_story":  "Story",
+    "nav_cinema": "Cinematic",
+    "nav_khoj":   "Khoj",
+    "nav_learn":  "Learn",
+    "hero_eyebrow":    "Ganit dekho · khelo · samajho",
+    "hero_title_pre":  "The",
+    "hero_title_span": "aha moment",
+    "hero_title_comma": ",",
+    "hero_title_post": "not the textbook.",
+    "hero_desc":  "Visual mathematics in Hinglish — see it, play it, understand it. For curious minds of any age.",
+    "hero_cta":   "Start Learning →",
+    "hero_trust": "Free · No account · English & हिंदी",
+    "show_see_title":  "Dekho",
+    "show_see_span":   "· See it",
+    "show_see_desc":   "Watch an idea come alive — numbers invented scene by scene, math you actually see move.",
+    "show_see_cta":    "Play the Story →",
+    "show_play_title": "Khelo",
+    "show_play_span":  "· Play it",
+    "show_play_desc":  "Touch the idea within seconds — drag, tap, slide. Understanding through play, not prose.",
+    "show_play_cta":   "Start a lesson →",
+    "show_aha_title":  "Samajho",
+    "show_aha_span":   "· Understand it",
+    "show_aha_desc":   "The moment it clicks — one clean visual, one line, and the \"aha\" lands for good.",
+    "show_aha_cta":    "See an aha →",
+    "story_kicker":   "✨ New · Interactive Story",
+    "story_title":    "The Story of Numbers",
+    "story_desc":     "Play the invention of numbers, scene by scene — match sheep to stones, slide the digit that becomes 200, drag zero into place. Hands-on, with audio narration.",
+    "story_cta_play": "▶ Play the story →",
+    "story_cta_or":   "or watch the cinematic cut",
+    "worlds_title": "Ganit ka Naksha",
+    "worlds_sub":   "8 worlds · basic to beautiful · start anywhere",
+    "play_title": "Play Mode",
+    "play_sub":   "Free-play interactive simulations — no lesson structure, just exploration.",
+    "sim_circle_title": "Area of a Circle = πr²",
+    "sim_circle_hook":  "Why πr²? Slice it like pizza 🍕",
+    "sim_watch_play":   "▶ Watch + Play →",
+    "sim_coming_soon":  "Coming soon",
+    "sim_planned":      "Planned",
+    "sim_pyth_title":   "Pythagoras Theorem",
+    "sim_pyth_hook":    "a² + b² = c², seen not memorised",
+    "sim_neg_hook":     "The number-line flip",
+    "sim_monte_title":  "Monte Carlo π",
+    "sim_monte_hook":   "Random dots → π 🤯",
+    "ages_title_pre":  "One map.",
+    "ages_title_span": "Every age.",
+    "ages_desc": "From a five-year-old counting rotis to a hundred-year-old rediscovering zero — the same path, walked at your own depth. The only prerequisite is curiosity.",
+    "age_5_label":       "Age 5",
+    "age_5_desc":        "Counts along, no reading needed",
+    "age_student_label": "Student",
+    "age_student_desc":  "Finally sees why it works",
+    "age_100_label":     "Age 100",
+    "age_100_desc":      "Rediscovers the wonder",
+    "email_title":       "Get notified of new lessons",
+    "email_desc":        "New visual lessons drop weekly. No spam — just math that makes you go \"aha.\"",
+    "email_placeholder": "your@email.com",
+    "email_submit":      "Notify me",
+    "email_note":        "Unsubscribe any time. No algorithms involved.",
+    "email_success":     "✓ You're in! Watch for the next aha.",
+    "email_error":       "Hmm, that didn't go through — please try again.",
+    "footer_tagline":  "Ganit dekho · khelo · samajho.",
+    "footer_tagline2": "Visual mathematics for curious minds of any age.",
+    "footer_explore": "Explore",
+    "footer_follow":  "Follow",
+    "footer_privacy": "Privacy",
+    "footer_learn":   "Learn",
+    "footer_story":   "Story of Numbers",
+    "footer_play":    "Play mode",
+    "footer_made":    "Made with love & math",
+    "khoj_invite_kicker": "✨ New · Daily",
+    "khoj_invite_title":  "Aaj ka Khoj",
+    "khoj_invite_desc":   "Today's tap-and-count find. Spot them all, share your score.",
+    "khoj_invite_cta":    "Play today's →"
+  },
+  "khoj": {
+    "kicker":        "✨ Aaj ka Khoj",
+    "title":         "Today's Find",
+    "eyebrow":       "Aaj ka Khoj",
+    "prompt":        "Tap all the {object} hiding in the scene.",
+    "result_kicker": "Khoj complete! 🎉",
+    "result_line":   "I found all {n} {object}!",
+    "card_line":     "I found all {n} {object}!",
+    "card_tag":      "Ganit dekho · khelo · samajho",
+    "share_text":    "I found all {n} {object}! {emoji} Play Aaj ka Khoj → {url}",
+    "share":         "Share my find",
+    "download":      "Save card",
+    "copy":          "Copy link",
+    "copied":        "Link copied!",
+    "again":         "Play again"
+  },
+  "scene": {
+    "mango": {
+      "object": "mangoes",
+      "decoy_bird": "That's a bird, not a mango! 🐦"
+    },
+    "cats": {
+      "object": "cats",
+      "decoy_dog": "That's a dog, not a cat! 🐶"
+    },
+    "diyas": {
+      "object": "diyas",
+      "decoy_flower": "That's a flower, not a diya! 🌼"
+    },
+    "balloons": {
+      "object": "balloons",
+      "decoy_kite": "That's a kite, not a balloon! 🪁"
+    }
+  },
+  "error404": {
+    "title": "This page doesn't compute.",
+    "body":  "Some things in maths are undefined — and so is this page. It may have moved, or never existed.",
+    "home":  "← Back to the map",
+    "learn": "Start a lesson instead →"
+  },
+  "world": {
+    "numbers":    { "name": "Numbers",               "subtitle": "संख्याएँ" },
+    "arithmetic": { "name": "Arithmetic",            "subtitle": "जोड़-घटाव" },
+    "fractions":  { "name": "Fractions & Decimals",  "subtitle": "टुकड़े" },
+    "shapes":     { "name": "Shapes & Space",        "subtitle": "आकार" },
+    "algebra":    { "name": "Patterns & Algebra",    "subtitle": "पहेलियाँ" },
+    "measure":    { "name": "Measure & Ratio",       "subtitle": "नाप-तोल" },
+    "data":       { "name": "Data & Chance",         "subtitle": "आँकड़े" },
+    "infinite":   { "name": "The Infinite & Beautiful", "subtitle": "अनंत" }
+  },
+  "lesson": {
+    "counting": {
+      "title":    "What is a Number?",
+      "subtitle": "Counting & one-to-one correspondence",
+      "hook": {
+        "title": "Shaadi mein kitni roti chahiye?",
+        "body":  "Imagine you're cooking for 5 guests. You need one roti for each person. How do you know when you have enough? You count — one roti, one guest, one by one. That's all a number is."
+      },
+      "play": {
+        "title":       "Count the dots",
+        "instruction": "Tap each dot to count it. Watch the number grow — one tap, one count."
+      },
+      "aha": {
+        "title": "One finger, one mango — that's a number!",
+        "body":  "A number is just a count. 5 means \"five things\" — five rotis, five fingers, five mangoes. The symbol '5' is just the name we gave to that count."
+      },
+      "check": {
+        "title": "Let's make sure!"
+      },
+      "check_q1": {
+        "prompt": "Can you count 5 mangoes? Tap each one."
+      },
+      "connect": {
+        "body":       "You now know what a number actually IS — a count. Next: where does 10 come from? Why does 9 roll over? Meet Zero and Place Value.",
+        "next_label": "Next: Zero & Place Value →"
+      }
+    },
+    "circle_area": {
+      "title":    "Area of a Circle = πr²",
+      "subtitle": "Why does the formula work? Slice it to see.",
+      "hook": {
+        "title": "Pizza slice secret — why πr²?",
+        "body":  "You've used the formula Area = πr². But where does it come from? What if you could CUT a circle into tiny slices, then rearrange them — and watch the formula appear right in front of you?"
+      },
+      "play": {
+        "title":       "Slice and unroll",
+        "instruction": "Watch the circle slice into wedges and unroll into a rectangle. More slices = closer to a perfect rectangle. The formula lives inside this shape!"
+      },
+      "aha": {
+        "title": "A circle IS a rectangle in disguise!",
+        "body":  "Unrolled: the rectangle's width = half the circumference = πr. Its height = r. Area = πr × r = πr². The formula isn't magic — it's geometry you can see."
+      },
+      "check": {
+        "title": "Let's make sure!"
+      },
+      "check_q1": {
+        "prompt": "The formula πr² has how many parts? Tap each one: π, r, and r."
+      },
+      "connect": {
+        "body":       "You've unlocked the circle's secret. Next: symmetry shows us why shapes balance. Then on to the algebra world — patterns, unknowns, and Pythagoras!",
+        "next_label": "Next: Symmetry →"
+      }
+    },
+    "place_value": {
+      "title":    "Why does 9 + 1 = 10?",
+      "subtitle": "The genius of place value",
+      "hook": {
+        "title": "Ancient people had no zero",
+        "body":  "Without zero and place value, you'd need a different symbol for EVERY number. The Hindu mathematicians invented something smarter: put digits in columns. The SAME 10 symbols (0-9) describe every number ever written."
+      },
+      "play": {
+        "title":       "Watch the tens column fill",
+        "instruction": "Use the slider to count up. When ones reach 9 and you add 1 more — watch what happens to the columns."
+      },
+      "aha": {
+        "title": "Ones reset! The carry jumps to tens.",
+        "body":  "9+1 doesn't create a new digit — it CARRIES. Ones reset to 0, and tens gets 1. The SAME 10 digits (0–9) describe every number ever, because the column they're in multiplies their value."
+      },
+      "check": { "title": "Let's make sure!" },
+      "check_q1": { "prompt": "Set the slider to 14. How many full tens do you see? Tap once for each." },
+      "connect": {
+        "body":       "Place value is why 2, 22, and 222 look similar but mean completely different things. Next: what if all numbers had a home on a line?",
+        "next_label": "Next: The Number Line →"
+      }
+    },
+    "number_line": {
+      "title":    "Numbers have an address!",
+      "subtitle": "The number line — where every number lives",
+      "hook": {
+        "title": "Every number has a home",
+        "body":  "Imagine a road stretching forever in both directions. Zero is at the centre. Every positive number lives to the right, every negative to the left. This road is the number line — and it's the most powerful idea in all of maths."
+      },
+      "play": {
+        "title":       "Walk the number line",
+        "instruction": "Move the slider and watch the dot travel. Each step is exactly 1 unit. Zero is the origin — the starting point for all distances."
+      },
+      "aha": {
+        "title": "Distance = steps from zero",
+        "body":  "7 is 7 steps right of zero. -4 is 4 steps left. Subtraction is walking backwards. The number line turns all of arithmetic into movement — and that's why it works for everything from temperature to bank balances."
+      },
+      "check": { "title": "Let's make sure!" },
+      "check_q1": { "prompt": "Go to position 5. Tap 5 times to count each step away from zero." },
+      "connect": {
+        "body":       "The line extends left too — into negative numbers. Temperature, debt, elevation all live there. Next: numbers below zero.",
+        "next_label": "Next: Negative Numbers →"
+      }
+    },
+    "negatives": {
+      "title":    "Numbers below zero!",
+      "subtitle": "The other half of the number line",
+      "hook": {
+        "title": "Your bank account can go below zero",
+        "body":  "You owe a friend ₹50 but have ₹0. After the loan your balance is -₹50. In Shimla in January the temperature is -5°C. These aren't imaginary — they're the LEFT side of the number line, and they've always been there."
+      },
+      "play": {
+        "title":       "Cross to the other side",
+        "instruction": "Drag the slider left past zero. Watch the dot cross into negative numbers. -3 is exactly 3 steps left of zero — just as real as +3 is to the right."
+      },
+      "aha": {
+        "title": "Negatives are mirror images of positives!",
+        "body":  "-5 and +5 are the same distance from zero, just in opposite directions. Add them: 5 + (-5) = 0. They cancel perfectly. Every positive number has a negative twin, and together they make the number line perfectly symmetric."
+      },
+      "check": { "title": "Let's make sure!" },
+      "check_q1": { "prompt": "How far is -4 from zero? Tap 4 times to count each step." },
+      "connect": {
+        "body":       "Negatives unlock subtraction, temperature scales, debt, and eventually complex numbers. Next world: how do we combine and transform numbers?",
+        "next_label": "Next: What is Addition? →"
+      }
+    },
+    "addition": {
+      "title":    "What does + really mean?",
+      "subtitle": "Combining two groups into one",
+      "hook": {
+        "title": "3 sweets from Amma + 4 from Nani = ?",
+        "body":  "You don't need to count all 7 from scratch. You already know there are 3. Just count 4 more: 4, 5, 6, 7. Addition is continuing a count from where you left off — and that's all it ever is."
+      },
+      "play": {
+        "title":       "Watch the groups merge",
+        "instruction": "Watch the two groups of dots combine into one. Try changing the group sizes with the sliders and see how the total changes."
+      },
+      "aha": {
+        "title": "Order doesn't matter — the pile is the same!",
+        "body":  "3 + 4 = 4 + 3 = 7. It's the same pile of dots, just arranged differently. This is the commutative property — and it works for ALL numbers. The pile doesn't care which group came first."
+      },
+      "check": { "title": "Let's make sure!" },
+      "check_q1": { "prompt": "After 3 + 4 merges, tap all 7 dots to count them one by one." },
+      "connect": {
+        "body":       "Addition is the foundation of everything: multiplication is repeated addition, algebra is finding the missing number in an addition. Next: what is subtraction?",
+        "next_label": "Next: Subtraction →"
+      }
+    },
+    "pythagoras": {
+      "title":    "a² + b² = c²",
+      "subtitle": "The right triangle's hidden secret.",
+      "hook": {
+        "title": "A builder's secret from 2500 years ago",
+        "body":  "Ancient builders used a rope with 12 knots tied into a 3-4-5 triangle to make PERFECT right angles. Why does 3² + 4² = 5²? What does it even mean to 'square' a side?"
+      },
+      "play": {
+        "title":       "Count the squares",
+        "instruction": "Watch the squares fill up — square on side a, square on side b, and square on side c. Count the cells. What do you notice?"
+      },
+      "aha": {
+        "title": "The squares on the legs fit inside the square on the hypotenuse!",
+        "body":  "a² means a square made of a×a cells. b² is b×b cells. Together they exactly fill the c² square. That's not a coincidence — it's true for EVERY right triangle."
+      },
+      "check": {
+        "title": "Let's make sure!"
+      },
+      "check_q1": {
+        "prompt": "In a 3-4-5 triangle: tap 5 times to count the extra cells that c² has over a² alone."
+      },
+      "connect": {
+        "body":       "Pythagoras works in navigation, architecture, and even your phone's GPS. Next: how do we read patterns from graphs?",
+        "next_label": "Next: Reading Graphs →"
+      }
+    }
+  }
+}

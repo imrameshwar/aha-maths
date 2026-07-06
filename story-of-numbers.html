@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Story of Numbers — an animated documentary | Aha Maths</title>
+  <meta name="description" content="From a shepherd's pebble to the invention of zero — watch the story of how humanity invented numbers, animated scene by scene. A cinematic documentary you watch, not read.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="video.other">
+  <meta property="og:title"       content="The Story of Numbers — an animated documentary | Aha Maths">
+  <meta property="og:description" content="From a shepherd's pebble to the invention of zero. The story of how humanity invented numbers, animated.">
+  <meta property="og:url"         content="https://ahamaths.com/story-of-numbers.html">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="The Story of Numbers — an animated documentary">
+  <meta name="twitter:description" content="A shepherd's pebble → tally bones → place value → zero → the modern world.">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "The Story of Numbers",
+    "description": "An animated documentary on how humanity invented numbers — from counting sheep with pebbles to the invention of zero and the ten Hindu-Arabic numerals.",
+    "educationalLevel": "All ages",
+    "learningResourceType": "Animated story",
+    "inLanguage": ["en"],
+    "url": "https://ahamaths.com/story-of-numbers.html",
+    "author": { "@type": "Person", "name": "Aha Maths", "url": "https://ahamaths.com" }
+  }
+  </script>
+
+  <link rel="canonical" href="https://ahamaths.com/story-of-numbers.html">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/story.css">
+
+  <!-- p5 as global UMD so the ES-module story engine can use window.p5 -->
+  <script src="lib/p5.min.js"></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- ── Header ── -->
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="index.html">
+      <div class="logo-mark">AM</div>
+      Aha Maths
+    </a>
+    <nav class="site-nav">
+      <a href="learn.html?lesson=1-01-counting" class="site-nav-learn">📚 Learn</a>
+      <a class="handle-link" href="https://www.youtube.com/@AhaMathsOfficial" target="_blank" rel="noopener">@AhaMathsOfficial ↗</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── Title block ── -->
+<div class="container" id="main-content">
+  <div class="story-header-block">
+    <p class="breadcrumb"><a href="index.html">← Home</a></p>
+    <p class="story-eyebrow">✨ Story Mode · Ganit ki Kahani</p>
+    <h1>The Story of <span>Numbers</span></h1>
+    <p class="story-lede">
+      Before writing, before money, before clocks — humans faced one question: <em>“How many?”</em>
+      Watch how that question grew into the greatest idea in history, one scene at a time.
+    </p>
+  </div>
+</div>
+
+<!-- ── The animated stage ── -->
+<div class="container">
+  <div class="story-stage" id="story-stage">
+    <div class="story-canvas-wrap" id="story-canvas"></div>
+
+    <div class="story-title-chip" id="story-title-chip">1 · The First Question</div>
+    <div class="story-captions" id="story-captions" aria-live="polite"></div>
+
+    <!-- Controls -->
+    <div class="story-controls">
+      <button class="story-btn" id="story-prev" aria-label="Previous scene" title="Previous scene (←)">⏮</button>
+      <button class="story-btn story-btn-play" id="story-play" aria-label="Play">▶</button>
+      <button class="story-btn" id="story-next" aria-label="Next scene" title="Next scene (→)">⏭</button>
+      <div class="story-scrub-wrap">
+        <input class="story-scrub" id="story-scrub" type="range" min="0" max="100" value="0" step="0.05" aria-label="Timeline">
+      </div>
+      <span class="story-time" id="story-time">0:00 / 0:00</span>
+      <button class="story-btn" id="story-restart" aria-label="Restart" title="Restart">↻</button>
+    </div>
+
+    <!-- Poster / pre-play overlay -->
+    <div class="story-poster" id="story-poster">
+      <div class="poster-kicker">0 → 9</div>
+      <div class="poster-title">The Story of Numbers</div>
+      <div class="poster-sub">An animated documentary — from a shepherd's pebble to the invention of zero. About 4 minutes.</div>
+      <button class="poster-play">▶ Play the story</button>
+    </div>
+  </div>
+
+  <!-- Scene dots -->
+  <div class="story-dots" id="story-dots" aria-label="Jump to scene"></div>
+</div>
+
+<!-- ── Chapters ── -->
+<div class="container">
+  <section class="story-chapters">
+    <h2>Chapters</h2>
+    <p class="sub">Twelve scenes — jump to any moment.</p>
+    <div id="chapter-list"></div>
+  </section>
+</div>
+
+<!-- ── Email capture ── -->
+<section class="container">
+  <div class="email-section">
+    <h2>More stories, more aha moments</h2>
+    <p>New visual stories and simulations drop weekly. No spam — just math that makes you go "aha."</p>
+    <form class="email-form" id="email-form"
+          action="https://formspree.io/f/REPLACE_WITH_FORM_ID"
+          method="POST">
+      <input type="hidden" name="_source" value="story-of-numbers">
+      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+      <button type="submit">Notify me</button>
+    </form>
+    <p class="email-note">Unsubscribe any time.</p>
+    <p class="form-success" id="form-success">✓ You're in! Watch for the next aha.</p>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="site-footer">
+  <div class="container">
+    <p>
+      <a href="index.html">← Home</a>
+      &nbsp;·&nbsp;
+      <a href="https://www.youtube.com/@AhaMathsOfficial" target="_blank" rel="noopener">YouTube @AhaMathsOfficial</a>
+      &nbsp;·&nbsp;
+      Made with p5.js
+    </p>
+  </div>
+</footer>
+
+<!-- ── Boot the story ── -->
+<script type="module">
+  // Fonts must be ready before p5 draws any text, or it falls back to serif.
+  await document.fonts.load('700 48px "Plus Jakarta Sans"');
+  await document.fonts.load('400 48px "Plus Jakarta Sans"');
+  await document.fonts.load('bold 48px "JetBrains Mono"');
+  await document.fonts.ready;
+
+  const { initStory, SCENES } = await import('./story/story-of-numbers.js');
+
+  // Build scene dots + chapter list from the scene list.
+  const dotsWrap = document.getElementById('story-dots');
+  const chapWrap = document.getElementById('chapter-list');
+  const dots = [];
+  let acc = 0;
+  const fmt = (s) => `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;
+  SCENES.forEach((s, i) => {
+    const start = acc; acc += s.dur;
+    const dot = document.createElement('button');
+    dot.className = 'story-dot';
+    dot.title = `${i+1}. ${s.title}`;
+    dot.setAttribute('aria-label', `Scene ${i+1}: ${s.title}`);
+    dotsWrap.appendChild(dot);
+    dots.push(dot);
+
+    const row = document.createElement('div');
+    row.className = 'chapter-row';
+    row.dataset.start = String(start);
+    row.innerHTML =
+      `<span class="chapter-num">${String(i+1).padStart(2,'0')}</span>` +
+      `<span class="chapter-title">${s.title}</span>` +
+      `<span class="chapter-time">${fmt(start)}</span>`;
+    chapWrap.appendChild(row);
+  });
+
+  const story = initStory({
+    canvasWrap:   document.getElementById('story-canvas'),
+    captionLayer: document.getElementById('story-captions'),
+    els: {
+      playBtn:    document.getElementById('story-play'),
+      restartBtn: document.getElementById('story-restart'),
+      prevBtn:    document.getElementById('story-prev'),
+      nextBtn:    document.getElementById('story-next'),
+      scrubber:   document.getElementById('story-scrub'),
+      timeLabel:  document.getElementById('story-time'),
+      titleChip:  document.getElementById('story-title-chip'),
+      dots,
+      poster:     document.getElementById('story-poster'),
+    },
+  });
+
+  // Local-only debug handle (drive/inspect the player from the console).
+  if (['127.0.0.1', 'localhost'].includes(location.hostname)) window.__story = story;
+
+  // Clicking a chapter row seeks + plays.
+  chapWrap.querySelectorAll('.chapter-row').forEach((row) => {
+    row.addEventListener('click', () => {
+      story.seek(parseFloat(row.dataset.start));
+      story.play();
+      document.getElementById('story-stage').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+
+  // Email form (same pattern as the rest of the site).
+  document.getElementById('email-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST', body: new FormData(form),
+        headers: { 'Accept': 'application/json' },
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.querySelector('.email-note').style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      }
+    } catch {
+      form.querySelector('button').textContent = 'Try again';
+    }
+  });
+
+  if ('serviceWorker' in navigator) {
+    if (['localhost', '127.0.0.1'].includes(location.hostname)) {
+      navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
+      if (window.caches) caches.keys().then(ks => ks.forEach(k => caches.delete(k)));
+    } else {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    }
+  }
+</script>
+
+</body>
+</html>
