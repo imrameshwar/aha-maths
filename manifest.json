@@ -2,7 +2,7 @@
   "name": "Aha Maths",
   "short_name": "Aha Maths",
   "description": "Visual maths for everyone — देखो, खेलो, समझो.",
-  "start_url": "/learn.html?lesson=1-01-counting",
+  "start_url": "learn.html?lesson=1-01-counting",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#0B0F1A",

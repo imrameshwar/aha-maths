@@ -155,7 +155,7 @@
       navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
       if (window.caches) caches.keys().then(ks => ks.forEach(k => caches.delete(k)));
     } else {
-      navigator.serviceWorker.register('/sw.js').catch(() => {});
+      navigator.serviceWorker.register('sw.js').catch(() => {});
     }
   }
 </script>
